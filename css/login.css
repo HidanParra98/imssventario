@@ -1,0 +1,47 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    /*font-family: Arial, Helvetica, sans-serif;*/
+    margin: 0; 
+    overflow-y: hidden;
+}
+/* ESTILOS DE IMAGENES */
+.grupologos{
+    text-align: center;
+    margin-top: 20px;
+    margin: auto;
+}
+.logos{
+    display: flex;
+    justify-content: center;
+}
+.llogos{
+    width: 40%;
+}
+
+/* ESTILOS DE TITULOS */
+.titulo{
+    text-align: center;
+    margin: auto;
+    margin-top: 10px;
+}
+
+/*ESTILO DE FORM*/
+
+form{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    padding: 5px;
+}
+.boton{
+    background-color: #036638;
+}
+
+
+
+

@@ -1,0 +1,37 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.titulo{
+    margin: auto;
+    padding: auto;
+    text-align: center;
+}
+.pie{
+    margin: auto;
+    padding: auto;
+    text-align: center;
+}
+.grupobotones{
+    padding: 20px;
+    margin: 20px;
+    border-style: dotted;
+    border-color: #036638;
+    border-radius: 20px;
+}
+.botones{
+    margin: auto;
+    font-size: 20px;
+    width: 180px;
+    margin-bottom: 5px;
+    background-color: #036638;
+}
+.subtitulos{
+    margin: auto;
+    text-align: center;
+    margin-bottom: 10px;
+}
+/*.adm{
+    background-color: #570202;
+}*/
