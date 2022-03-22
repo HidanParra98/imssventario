@@ -1,3 +1,11 @@
+<?php
+    session_start();
+    $usuario = $_SESSION['username'];
+    
+    if(!isset($usuario)){
+        header("location: ../index.html");
+    }
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -40,6 +48,9 @@
 
         <div class="pie row">
             <h6 class="titulo">Elaboración: De Lucio Mendoza Melanie Vianney, Chi Burgos Rodrigo Ivan & Cornelio Hernandez Erick Sebastian</h6>
+            <?php
+                echo "<a href='../backend/salir.php'> CERRAR SESION</a>";
+            ?>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

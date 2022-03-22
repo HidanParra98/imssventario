@@ -8,7 +8,7 @@
     <title>Servicios</title>
 </head>
 <body>
-    <div class="container-fluid">
+    <div class="container">
         <table class="table">
             <thead>
               <tr>
