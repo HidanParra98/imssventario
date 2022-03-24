@@ -1,7 +1,6 @@
-function sesion(){
-    /*let usuario = document.getElementById("usuario").value;
-    let password = document.getElementById("password").value;*/
-
-    location.href= "back/servicios.html";
-    alert("si funcionaaAAAAAAAAAA");
-}
+/*$(document).ready(function(){
+    $('#sidebarCollapse').on('click',function (){
+        $('#sidebar').toggleClass('active');
+        //console.log("puto");
+    });
+})*/
