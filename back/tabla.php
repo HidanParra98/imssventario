@@ -23,10 +23,10 @@
               <span>Cambiar</span>
         </button>
         <button type="button" id="sidebarCollapse" class="btn btn-info">
-              <span>Borrar</span>
+              <span>Imprimir</span>
         </button>
         <button type="button" id="sidebarCollapse" class="btn btn-danger">
-              <span>Imprimir</span>
+              <span>Borrar</span>
         </button>
         <button type="button" id="sidebarCollapse" class="btn btn-success">
               <span>Cerrar Sesión</span>
