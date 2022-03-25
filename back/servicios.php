@@ -41,16 +41,22 @@
                 <button class="btn btn-secondary d-block botones">Labor</button>
                 <button class="btn btn-secondary d-block botones">Expulsion</button>
                 <button class="btn btn-secondary d-block botones">Qx Urgencias</button>
-                <button class="btn btn-secondary d-block botones adm">Qx Programadas</button>
-                <button class="btn btn-secondary d-block botones adm">Recuperacion</button>
+                <button class="btn btn-secondary d-block botones">Qx Programadas</button>
+                <button class="btn btn-secondary d-block botones">Recuperacion</button>
             </div>
+        </div>
+        <div class="row">
+        <button class="btn btn-primary d-block botones adm">
+            <a href="<?php echo '../back/administracion.php';?>">ADMINISTRAR</a>
+        </button>
+        <button class="btn btn-danger d-block botones salir">
+            <a href="<?php echo '../backend/salir.php';?>">SALIR</a>
+        </button>
         </div>
 
         <div class="pie row">
             <h6 class="titulo">Elaboración: De Lucio Mendoza Melanie Vianney, Chi Burgos Rodrigo Ivan & Cornelio Hernandez Erick Sebastian</h6>
-            <?php
-                echo "<a href='../backend/salir.php'> CERRAR SESION</a>";
-            ?>
+            
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

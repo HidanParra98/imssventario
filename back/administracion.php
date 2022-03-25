@@ -5,18 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/tabla.css">
+    <link rel="stylesheet" href="../css/administración.css">
     <title>Inventario</title>
 </head>
 <body>
 <div class="container-fluid padre">
   <!--NAVBAR-->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <h1 class="navbar-brand">SERVICIO</h1>
-    <!--CALENDARIO-->
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="date">
-    </form>
+    <h1 class="navbar-brand">ADMINISTRACIÓN</h1>
     <!--BOTON TOGGLER-->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -26,7 +22,7 @@
       <!--GRUPO DE BOTONES-->
       <ul class="navbar-nav mr-auto">
         <!--DROPDOWN DEL BOTON AGREGAR-->
-        <li class="nav-item dropdown">
+        <!--<li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Agregar
           </a>
@@ -37,17 +33,17 @@
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#"></a>
           </div>
-        </li>
+        </li>-->
         <!--FIN DEL DROPDOWN DEL BOTON AGREGAR-->
         <!--DEMAS BOTONES-->
         <li class="nav-item">
-          <a class="nav-link" href="#">Cambiar</a>
+          <a class="nav-link" href="#">CATEGORIAS</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Borrar</a>
+          <a class="nav-link" href="#">SERVICIOS</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Cerrar Sesión</a>
+          <a class="nav-link" href="#">MATERIALES</a>
         </li>
       </ul>
       <!--FIN DEL GRUPO BOTONES-->
@@ -110,100 +106,7 @@
     </tr>
   </tbody>
 </table>
-
-
 </div>
-
-
-
-<!--
-
-  <div class="wrapper">
-NAVBAR
-  <div id="content">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <h1>Nombre Servicio</h1>
-        <input type="date" name="" id="">
-        <button type="button" id="" class="btn btn-info">
-              <span>Agregar</span>
-        </button>
-        <button type="button" id="" class="btn btn-info">
-              <span>Cambiar</span>
-        </button>
-        <button type="button" id="" class="btn btn-info">
-              <span>Imprimir</span>
-        </button>
-        <button type="button" id="" class="btn btn-danger">
-              <span>Borrar</span>
-        </button>
-        <button type="button" id="" class="btn btn-success">
-              <span>Cerrar Sesión</span>
-        </button>
-
-      </div>
-    </nav>
-    <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Material</th>
-      <th scope="col">Cantidad</th>
-      <th scope="col">Fecha 1</th>
-      <th scope="col">Fecha 2</th>
-      <th scope="col">Fecha 3</th>
-      <th scope="col">Fecha 4</th>
-      <th scope="col">Fecha 5</th>
-      <th scope="col">Fecha 6</th>
-      <th scope="col">Fecha 7</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Material 1</td>
-      <td>2</td>
-      <td>(Numero)</td>
-      <td>(Numero)</td>
-      <td>(Numero)</td>
-      <td>(Numero)</td>
-      <td>(Numero)</td>
-      <td>(Numero)</td>
-      <td>(Numero)</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Material 2</td>
-      <td>3</td>
-      <td>(Numero)</td>
-      <td>(Numero)</td>
-      <td>(Numero)</td>
-      <td>(Numero)</td>
-      <td>(Numero)</td>
-      <td>(Numero)</td>
-      <td>(Numero)</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Material 3</td>
-      <td>4</td>
-      <td>(Numero)</td>
-      <td>(Numero)</td>
-      <td>(Numero)</td>
-      <td>(Numero)</td>
-      <td>(Numero)</td>
-      <td>(Numero)</td>
-      <td>(Numero)</td>
-    </tr>
-  </tbody>
-</table>
-  
-  </div>
-
-
-
-</div>
--->
     <script src="../js/main.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
