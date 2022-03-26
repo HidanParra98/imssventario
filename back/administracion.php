@@ -6,7 +6,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/administración.css">
-    <title>Inventario</title>
+    <title>Administración</title>
 </head>
 <body>
 <div class="container-fluid padre">
@@ -45,6 +45,9 @@
         <li class="nav-item">
           <a class="nav-link" href="#">MATERIALES</a>
         </li>
+        <li class="nav-item">
+        <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">CREAR</button>
+        </li>
       </ul>
       <!--FIN DEL GRUPO BOTONES-->
     </div>
@@ -52,60 +55,62 @@
   </nav>
   <!--FIN DEL NAVBAR-->
   <!--INICIO DEL TABLE-->
-  <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">MATERIAL</th>
-      <th scope="col">CANTIDAD</th>
-      <th scope="col">DOMINGO</th>
-      <th scope="col">LUNES</th>
-      <th scope="col">MARTES</th>
-      <th scope="col">MIERCOLES</th>
-      <th scope="col">JUEVES</th>
-      <th scope="col">VIERNES</th>
-      <th scope="col">SABADO</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Material 1</td>
-      <td>Cantidad 1</td>
-      <td>Numero D</td>
-      <td>Numero L</td>
-      <td>Numero M</td>
-      <td>Numero M</td>
-      <td>Numero J</td>
-      <td>Numero V</td>
-      <td>Numero S</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Material 2</td>
-      <td>Cantidad 2</td>
-      <td>Numero D</td>
-      <td>Numero L</td>
-      <td>Numero M</td>
-      <td>Numero M</td>
-      <td>Numero J</td>
-      <td>Numero V</td>
-      <td>Numero S</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Material 3</td>
-      <td>Cantidad 3</td>
-      <td>Numero D</td>
-      <td>Numero L</td>
-      <td>Numero M</td>
-      <td>Numero M</td>
-      <td>Numero J</td>
-      <td>Numero V</td>
-      <td>Numero S</td>
-    </tr>
-  </tbody>
-</table>
+  <div class="table-responsive">
+    <table class="table">
+    <thead>
+        <tr>
+        <th scope="col">#</th>
+        <th scope="col">MATERIAL</th>
+        <th scope="col">CANTIDAD</th>
+        <th scope="col">DOMINGO</th>
+        <th scope="col">LUNES</th>
+        <th scope="col">MARTES</th>
+        <th scope="col">MIERCOLES</th>
+        <th scope="col">JUEVES</th>
+        <th scope="col">VIERNES</th>
+        <th scope="col">SABADO</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+        <th scope="row">1</th>
+        <td>Material 1</td>
+        <td>Cantidad 1</td>
+        <td>Numero D</td>
+        <td>Numero L</td>
+        <td>Numero M</td>
+        <td>Numero M</td>
+        <td>Numero J</td>
+        <td>Numero V</td>
+        <td>Numero S</td>
+        </tr>
+        <tr>
+        <th scope="row">2</th>
+        <td>Material 2</td>
+        <td>Cantidad 2</td>
+        <td>Numero D</td>
+        <td>Numero L</td>
+        <td>Numero M</td>
+        <td>Numero M</td>
+        <td>Numero J</td>
+        <td>Numero V</td>
+        <td>Numero S</td>
+        </tr>
+        <tr>
+        <th scope="row">3</th>
+        <td>Material 3</td>
+        <td>Cantidad 3</td>
+        <td>Numero D</td>
+        <td>Numero L</td>
+        <td>Numero M</td>
+        <td>Numero M</td>
+        <td>Numero J</td>
+        <td>Numero V</td>
+        <td>Numero S</td>
+        </tr>
+    </tbody>
+    </table>
+  </div>
 </div>
     <script src="../js/main.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -116,3 +121,51 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>
+
+<!--MODAL-->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Creando algo...</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Crear un(a) nuevo(a): 
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                        <button class="dropdown-item" id="btnCategoria" type="button">Categoria</button>
+                        <button class="dropdown-item" id="btnServicio" type="button">Servicio</button>
+                        <button class="dropdown-item" id="btnMaterial" type="button">Material</button>
+                    </div>
+                </div>               
+          </div>
+          <div class="camposDinamicos">
+
+          </div>
+          <!--
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Recipient:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Message:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+            -->
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
