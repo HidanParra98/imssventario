@@ -22,17 +22,17 @@
       <!--GRUPO DE BOTONES-->
       <ul class="navbar-nav mr-auto">
         <!--DEMAS BOTONES-->
-        <li class="nav-item">
-          <a class="nav-link" href="<?php echo '../back/categorias.php';?>">CATEGORIAS</a>
-        </li>
         <li class="nav-item active">
-          <a class="nav-link" href="#">SERVICIOS</a>
+          <a class="nav-link" href="#">CATEGORIAS</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<?php echo '../back/servicios.php';?>">SERVICIOS</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="<?php echo '../back/materiales.php';?>">MATERIALES</a>
         </li>
         <li class="nav-item">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2">NUEVO</button>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">NUEVO</button>
         </li>
       </ul>
     </div>
@@ -44,8 +44,7 @@
     <thead>
         <tr>
         <th scope="col">#</th>
-        <th scope="col">CATEGORIAS</th>
-        <th scope="col">SERVICIOS</th>
+        <th scope="col">NOMBRE</th>
         <th scope="col">EDITAR</th>
         <th scope="col">BORRAR</th>
         </tr>
@@ -53,8 +52,7 @@
     <tbody>
         <tr>
         <th scope="row">1</th>
-        <td>Categoria</td>
-        <td>Servicio</td>
+        <td>Nombre 1</td>
         <td>Editar</td>
         <td>Borrar</td>
         </tr>
@@ -72,13 +70,13 @@
 </body>
 </html>
 
-<!--MODAL 2-->
+<!--MODAL-->
 
-<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Creando nuevo servicio</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Creando nueva categoria</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -86,18 +84,11 @@
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label for="exampleFormControlSelect1">Seleccione la categoria a la que pertenecera el servicio</label>
-            <select class="form-control" id="exampleFormControlSelect1">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </select>
+            <label for="recipient-name" class="col-form-label">Nombre de la Categoria:</label>
+            <input type="text" class="form-control" id="recipient-name">
           </div>
           <div class="form-group">
-            <label for="recipient-name2" class="col-form-label">Nombre del Servicio</label>
-            <input type="text" class="form-control" id="recipient-name2">
+            <p>(Una categoria es un grupo de Servicios).</p>
           </div>
         </form>
       </div>

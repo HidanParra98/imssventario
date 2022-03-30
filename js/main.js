@@ -1,6 +1,6 @@
 $(document).ready(function(){
     $("#btnCategoria").click(function(){
-        $("p").append("Some appended text.");
+        $("#camposCat").appendTo("#dinamicos");
     });    
     $("#btnServicio").click(function(){
         alert("alabergaaaaaaaaaaaaaa");

@@ -12,7 +12,7 @@
 
     if($array['contar']>0){
         $_SESSION['username'] = $usuario;
-        header("location: ../back/servicios.php");
+        header("location: ../back/menu.php");
     }else{
         echo '<script language="javascript">
                 alert("No existe el Usuario");
