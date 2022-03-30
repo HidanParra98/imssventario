@@ -32,7 +32,7 @@
           <a class="nav-link" href="<?php echo '../back/materiales.php';?>">MATERIALES</a>
         </li>
         <li class="nav-item">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2">NUEVO</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalServicios">NUEVO</button>
         </li>
       </ul>
     </div>
@@ -55,8 +55,8 @@
         <th scope="row">1</th>
         <td>Categoria</td>
         <td>Servicio</td>
-        <td>Editar</td>
-        <td>Borrar</td>
+        <td><button type="button" class="btn btn-info">Editar</button></td>
+        <td><button type="button" class="btn btn-danger">Borrar</button></td>
         </tr>
     </tbody>
     </table>
@@ -74,7 +74,7 @@
 
 <!--MODAL 2-->
 
-<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalServicios" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -86,8 +86,8 @@
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label for="exampleFormControlSelect1">Seleccione la categoria a la que pertenecera el servicio</label>
-            <select class="form-control" id="exampleFormControlSelect1">
+            <label for="listaCategorias">Seleccione la categoria a la que pertenecera el servicio</label>
+            <select class="form-control" id="listaCategorias">
               <option>1</option>
               <option>2</option>
               <option>3</option>
@@ -96,14 +96,14 @@
             </select>
           </div>
           <div class="form-group">
-            <label for="recipient-name2" class="col-form-label">Nombre del Servicio</label>
-            <input type="text" class="form-control" id="recipient-name2">
+            <label for="nombreServicio" class="col-form-label">Nombre del Servicio</label>
+            <input type="text" class="form-control" id="nombreServicio">
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Guardar</button>
+        <button type="button" class="btn btn-primary" id="btnGuardarServicio">Guardar</button>
       </div>
     </div>
   </div>

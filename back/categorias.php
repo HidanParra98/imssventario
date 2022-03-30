@@ -32,7 +32,7 @@
           <a class="nav-link" href="<?php echo '../back/materiales.php';?>">MATERIALES</a>
         </li>
         <li class="nav-item">
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">NUEVO</button>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCategorias">NUEVO</button>
         </li>
       </ul>
     </div>
@@ -53,8 +53,8 @@
         <tr>
         <th scope="row">1</th>
         <td>Nombre 1</td>
-        <td>Editar</td>
-        <td>Borrar</td>
+        <td><button type="button" class="btn btn-info">Editar</button></td>
+        <td><button type="button" class="btn btn-danger">Borrar</button></td>
         </tr>
     </tbody>
     </table>
@@ -72,7 +72,7 @@
 
 <!--MODAL-->
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalCategorias" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -84,8 +84,8 @@
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Nombre de la Categoria:</label>
-            <input type="text" class="form-control" id="recipient-name">
+            <label for="nombreCategoria" class="col-form-label">Nombre de la Categoria:</label>
+            <input type="text" class="form-control" id="nombreCategoria">
           </div>
           <div class="form-group">
             <p>(Una categoria es un grupo de Servicios).</p>
@@ -94,7 +94,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Guardar</button>
+        <button type="button" class="btn btn-primary" id="btnGuardarCat">Guardar</button>
       </div>
     </div>
   </div>
