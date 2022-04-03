@@ -1,3 +1,8 @@
+<?php
+include '../backend/conexion.php';
+
+?>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -43,19 +48,29 @@
     <table class="table">
     <thead>
         <tr>
-        <th scope="col">#</th>
-        <th scope="col">NOMBRE</th>
-        <th scope="col">EDITAR</th>
-        <th scope="col">BORRAR</th>
+          <th scope="col">#</th>
+          <th scope="col">NOMBRE</th>
+          <th scope="col">ACCION</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-        <th scope="row">1</th>
-        <td>Nombre 1</td>
-        <td><button type="button" class="btn btn-info">Editar</button></td>
-        <td><button type="button" class="btn btn-danger">Borrar</button></td>
+    <?php
+    $consulta = mysqli_query($conn,"SELECT * FROM categorias");
+    $i=1;
+    while($fila = mysqli_fetch_array($consulta)){
+    ?>
+        <tr id="<?php echo $fila["cat_id"];?>">
+          <th scope="row"><?php echo $i?></th>
+          <td><?php echo $fila["cat_nombre"]?></td>
+          <td>
+            <button type="button" id="btnEditar" class="btn btn-info" data-toggle="modal" data-target="#modalCategorias">Editar</button>
+            <button type="button" class="btn btn-danger">Borrar</button></td>
+          </td>
         </tr>
+    <?php
+      $i++;
+    }
+    ?>
     </tbody>
     </table>
   </div>
@@ -89,12 +104,41 @@
           </div>
           <div class="form-group">
             <p>(Una categoria es un grupo de Servicios).</p>
+            <h5 class="text-danger"id="alerta"></h5>
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
         <button type="button" class="btn btn-primary" id="btnGuardarCat">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="editCat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabe" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabe">Editando categoria</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="editCategoria" class="col-form-label">Nombre de la Categoria:</label>
+            <input type="text" class="form-control" id="editCategoria">
+          </div>
+          <div class="form-group">
+            <p>(Una categoria es un grupo de Servicios).</p>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" id="btnEditCat">Guardar</button>
       </div>
     </div>
   </div>
