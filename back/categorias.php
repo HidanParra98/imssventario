@@ -46,7 +46,7 @@ include '../backend/conexion.php';
   <!--INICIO DEL TABLE-->
   <div id="tab" class="table-responsive">
     <table class="table">
-    <thead>
+    <thead class="ttt">
         <tr>
           <th scope="col">#</th>
           <th scope="col">NOMBRE</th>
