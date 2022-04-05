@@ -1,13 +1,34 @@
 $(document).ready(function(){
-    $("#btnCategoria").click(function(){
-        $("#camposCat").appendTo("#dinamicos");
-    });    
-    $("#btnServicio").click(function(){
-        alert("alabergaaaaaaaaaaaaaa");
-    });
-    $("#btnMaterial").click(function(){
-        alert("alabergaaaaaaaaaaaaaa");
-    });
+    /*$("#btnEditar").click(function(){
+        $("#exampleModalLabel").text("Editando Categoria");
+        $("#exampleModalLabel").text("Creando Categoria");
+    });    */
+    $("#btnGuardarCat").click(function(e){
+        e.preventDefault();
+        let nomCat=$("#nombreCategoria").val();
+        let action = 'insertar_cat';
+
+        //alert(Object.values(obj));
+
+        if(nomCat==""){
+            alert("Escribe un nombre!");
+        }
+        else{
+            $.ajax({
+                url: "../backend/funciones.php",
+                type: "POST",
+                async: true,
+                data: {
+                    action: action,
+                    nomCat: nomCat,
+                }, 
+                success: function(response){
+                    console.log(response);
+                }
+            });
+            //location.reload();
+        }
+    }); 
 
 
     /*$('#sidebarCollapse').on('click',function (){

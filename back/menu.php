@@ -1,4 +1,6 @@
 <?php
+    include '../backend/conexion.php';
+
     session_start();
     $usuario = $_SESSION['username'];
     
@@ -20,7 +22,9 @@
         <div class="row">
             <h1 class="titulo">Seleccione un Servicio</h1>
         </div>
+        <?php
         
+        ?>
         <div class="row">
             <div class="col grupobotones">
                 <h4 class="subtitulos">PEDIATRIA</h4>
