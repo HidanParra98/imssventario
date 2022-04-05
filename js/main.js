@@ -24,10 +24,13 @@ $(document).ready(function(){
                 }, 
                 success: function(response){
                     console.log(response);
+                    //location.reload();
+                    $('#tab').load(location.href + " #tab");
                 }
             });
             //location.reload();
         }
+        
     }); 
 
 

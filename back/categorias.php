@@ -10,13 +10,13 @@ include '../backend/conexion.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/admon.css">
+    <link rel="stylesheet" href="../css/categorias.css">
     <title>Administración</title>
 </head>
 <body>
 <div class="container-fluid padre">
   <!--NAVBAR-->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light <?php //echo ("navbar-static fixed-top")?> bg-light">
     <h1 class="navbar-brand">ADMINISTRAR</h1>
     <!--BOTON TOGGLER-->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,7 +44,7 @@ include '../backend/conexion.php';
   </nav>
   <!--FIN DEL NAVBAR-->
   <!--INICIO DEL TABLE-->
-  <div class="table-responsive">
+  <div id="tab" class="table-responsive">
     <table class="table">
     <thead>
         <tr>

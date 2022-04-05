@@ -7,3 +7,8 @@
     padding: 0;
     margin: 0;
 }
+thead{
+    position: sticky;
+    top: 0;
+
+}

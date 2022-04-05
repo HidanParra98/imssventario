@@ -19,7 +19,7 @@ function insertar_cat(){
     //print_r($_POST);
     //echo("insertar!");
     $nomCat = $_POST['nomCat'];
-    $consulta = mysqli_query($conn,"INSERT INTO categorias (cat_nombre) VALUES ($nomCat)");
+    $consulta = mysqli_query($conn,"INSERT INTO categorias (cat_nombre) VALUES ('$nomCat')");
 
     if($consulta){
         echo ("insertar!");
