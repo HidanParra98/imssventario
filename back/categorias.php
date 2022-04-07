@@ -37,7 +37,7 @@ include '../backend/conexion.php';
           <a class="nav-link" href="<?php echo '../back/materiales.php';?>">MATERIALES</a>
         </li>
         <li class="nav-item">
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCategorias">NUEVO</button>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal">NUEVO</button>
         </li>
       </ul>
     </div>
@@ -63,8 +63,8 @@ include '../backend/conexion.php';
           <th scope="row"><?php echo $i?></th>
           <td><?php echo $fila["cat_nombre"]?></td>
           <td>
-            <button type="button" id="btnEditar" class="btn btn-info" data-toggle="modal" data-target="#modalCategorias">Editar</button>
-            <button type="button" class="btn btn-danger">Borrar</button></td>
+            <button type="button" data-id="<?php echo $fila["cat_id"];?>" class="btn btn-info editarCat">Editar</button>
+            <button type="button" data-id="<?php echo $fila["cat_id"];?>" class="btn btn-danger borrarCat">Borrar</button></td>
           </td>
         </tr>
     <?php
@@ -90,7 +90,7 @@ include '../backend/conexion.php';
 
 <!--MODAL-->
 
-<div class="modal fade" id="modalCategorias" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -113,12 +113,12 @@ include '../backend/conexion.php';
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary" id="btnGuardarCat">Guardar</button>
+        <button type="button" class="btn btn-primary" id="guardarCat">Guardar</button>
       </div>
     </div>
   </div>
 </div>
-
+<!--
 <div class="modal fade" id="editCat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabe" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -146,3 +146,6 @@ include '../backend/conexion.php';
     </div>
   </div>
 </div>
+
+
+  -->
