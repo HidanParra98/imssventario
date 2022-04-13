@@ -9,9 +9,8 @@ $(document).ready(function(){
             action = 'editar_cat';
             idCat = $(this).data("id");
             
-            
             console.log(idCat);
-            $(this).removeData("edicion").removeData("id");
+            /*$(this).removeData("edicion").removeData("id");*/
         }
 
         //alert(Object.values(obj));
