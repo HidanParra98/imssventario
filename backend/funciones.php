@@ -39,6 +39,13 @@ function insertar_cat(){
 
 }
 
+function editar_cat(){
+    include '../backend/conexion.php'; 
+    print_r($_POST);  
+    
+    
+}
+
 function consultar_cat(){
     include '../backend/conexion.php';
 
@@ -53,12 +60,6 @@ function consultar_cat(){
         echo("error");
     }
     echo json_encode($data);
-    
-    /*if($consulta){
-        echo("ahuevooo");
-    }else{
-        echo("ctm");
-    }*/
 }
 
 function borrar_cat(){

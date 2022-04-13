@@ -5,11 +5,13 @@ $(document).ready(function(){
         let nomCat = $("#nombreCategoria").val();
         let action = 'insertar_cat';
 
-        if($(this).data("edicion")){
-            alert("ovo");
-            /*obj["accion"]="editar_user";
-            obj["id"]=$(this).data("id");
-            $(this).removeData("edicion").removeData("id");*/
+        if($(this).data("actualizar")==1){
+            action = 'editar_cat';
+            idCat = $(this).data("id");
+            
+            
+            console.log(idCat);
+            $(this).removeData("edicion").removeData("id");
         }
 
         //alert(Object.values(obj));
@@ -49,11 +51,12 @@ $(document).ready(function(){
             }, 
             success: function(data){
                 console.log(data);
+                //console.log(response);
                 $('#nombreCategoria').val(data.info.cat_nombre);
             }
         })
         
-        $("#guardarCat").text("Actualizar").data("edicion");
+        $("#guardarCat").text("Actualizar").data("actualizar", 1).data("id",idCat);
         $(".modal-title").text("Editar Usuario");
         $("#modal").modal("show");
 
