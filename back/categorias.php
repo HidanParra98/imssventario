@@ -118,34 +118,3 @@ include '../backend/conexion.php';
     </div>
   </div>
 </div>
-<!--
-<div class="modal fade" id="editCat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabe" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabe">Editando categoria</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="editCategoria" class="col-form-label">Nombre de la Categoria:</label>
-            <input type="text" class="form-control" id="editCategoria">
-          </div>
-          <div class="form-group">
-            <p>(Una categoria es un grupo de Servicios).</p>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary" id="btnEditCat">Guardar</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-  -->
