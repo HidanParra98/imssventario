@@ -8,6 +8,11 @@
     if(!isset($usuario)){
         header("location: ../index.html");
     }
+
+    $consulta = mysqli_query($conn,"SELECT adm_rol FROM admin WHERE adm_usuario = '$usuario'");
+    $si=1;
+    $no=2;
+    $fila = mysqli_fetch_array($consulta);
 ?>
 <html lang="en">
 <head>
@@ -50,14 +55,10 @@
                 <button class="btn btn-secondary d-block botones">Recuperacion</button>
             </div>
         </div>
+        <div class="row">
         <?php
-            $consulta = mysqli_query($conn,"SELECT adm_rol FROM admin WHERE adm_usuario = '$usuario'");
-            $si=1;
-            $no=2;
-            $fila = mysqli_fetch_array($consulta);
             if ($fila['adm_rol'] == 1) { 
         ?>
-        <div class="row">
         <button class="btn btn-primary d-block botones adm">
             <a href="<?php echo '../back/categorias.php';?>">ADMINISTRAR</a>
         </button>

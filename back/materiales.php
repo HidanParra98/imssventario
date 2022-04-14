@@ -7,6 +7,14 @@ session_start();
     if(!isset($usuario)){
         header("location: ../index.html");
     }
+    //CONSULTA Y VALIDACIÓN PARA EL ACCESO A ESTA PAGINA POR URL
+    $consulta = mysqli_query($conn,"SELECT adm_rol FROM admin WHERE adm_usuario = '$usuario'");
+    $si=1;
+    $no=2;
+    $fila = mysqli_fetch_array($consulta);
+    if ($fila['adm_rol'] != 1){
+      header("location: ../back/menu.php");
+    }
 
 ?>
 <html lang="en">
