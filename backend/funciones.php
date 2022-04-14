@@ -26,9 +26,9 @@ if($_POST){
 function insertar_cat(){
 
     include '../backend/conexion.php';
+    extract($_POST);
+    
     //print_r($_POST);
-    //echo("insertar!");
-    $nomCat = $_POST['nomCat'];
     $consulta = mysqli_query($conn,"INSERT INTO categorias (cat_nombre) VALUES ('$nomCat')");
 
     if($consulta){
@@ -41,17 +41,24 @@ function insertar_cat(){
 
 function editar_cat(){
     include '../backend/conexion.php'; 
-    print_r($_POST);  
-    
+    extract($_POST);
+    //print_r($_POST);  
+    $consulta = mysqli_query($conn,"UPDATE categorias SET cat_nombre = '$nomCat' WHERE cat_id = $idCat");
+
+    if($consulta){
+        echo("editar!");
+    }else{
+        echo("error");
+    }
     
 }
 
 function consultar_cat(){
     include '../backend/conexion.php';
-
+    extract($_POST);
     //print_r($_POST);
-    $id = $_POST['id'];
-    $consulta = mysqli_query($conn,"SELECT cat_nombre FROM categorias WHERE cat_id = $id");
+    //$id = $_POST['id'];
+    $consulta = mysqli_query($conn,"SELECT cat_nombre FROM categorias WHERE cat_id = $idCat");
 
     if($consulta->num_rows > 0){
         $nomCat = $consulta->fetch_assoc();
@@ -64,10 +71,11 @@ function consultar_cat(){
 
 function borrar_cat(){
     include '../backend/conexion.php';
+    extract($_POST);
     //print_r($_POST);
 
-    $id = $_POST['id'];
-    $consulta = mysqli_query($conn,"DELETE FROM categorias WHERE cat_id = $id");
+    //$id = $_POST['id'];
+    $consulta = mysqli_query($conn,"DELETE FROM categorias WHERE cat_id = $idCat");
 
     if($consulta){
         echo ("borrar!");

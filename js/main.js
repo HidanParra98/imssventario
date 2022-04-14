@@ -4,13 +4,18 @@ $(document).ready(function(){
     $("#guardarCat").click(function(){
         let nomCat = $("#nombreCategoria").val();
         let action = 'insertar_cat';
+        let obj = {
+            nomCat: nomCat,
+            action: action
+        }
+
 
         if($(this).data("actualizar")==1){
-            action = 'editar_cat';
-            idCat = $(this).data("id");
+            obj["action"] = 'editar_cat';
+            obj["idCat"] = $(this).data("id");
             
-            console.log(idCat);
-            /*$(this).removeData("edicion").removeData("id");*/
+            //console.log(idCat);
+            $(this).removeData("actualizar").removeData("id");
         }
 
         //alert(Object.values(obj));
@@ -22,32 +27,29 @@ $(document).ready(function(){
                 url: "../backend/funciones.php",
                 type: "POST",
                 async: true,
-                data: {
-                    action: action,
-                    nomCat: nomCat,
-                }, 
+                data: obj,
                 success: function(response){
                     console.log(response);
                     location.reload();
                 }
             })
-            //location.reload();
         }  
     }); 
 
     $(".editarCat").click(function(){
         let idCat = $(this).data("id");
         let action = 'consultar_cat';
+        let obj = {
+            idCat : idCat,
+            action : action
+        }
 
         $.ajax({
             url: "../backend/funciones.php",
             type: "POST",
             async: true,
             dataType: "json",
-            data: {
-                action: action,
-                id: idCat,
-            }, 
+            data: obj, 
             success: function(data){
                 console.log(data);
                 //console.log(response);
@@ -64,21 +66,21 @@ $(document).ready(function(){
     $(".borrarCat").click(function(){
         let idCat = $(this).data("id");
         let action = 'borrar_cat';
+        let obj = {
+            idCat : idCat,
+            action : action
+        }
         //alert(idCat);
         $.ajax({
             url: "../backend/funciones.php",
             type: "POST",
             async: true,
-            data: {
-                action: action,
-                id: idCat,
-            }, 
+            data: obj, 
             success: function(response){
                 console.log(response);
                 location.reload();
             }
         })
-        //location.reload();
 
     });
 
