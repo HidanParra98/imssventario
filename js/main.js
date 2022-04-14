@@ -1,6 +1,10 @@
 $(document).ready(function(){
 
-    //CATEGORIAS
+/*
+||||||||||||||||||||||||||||||
+||||| C A T E G O R I A S|||||
+||||||||||||||||||||||||||||||
+*/
     $("#guardarCat").click(function(){
         let nomCat = $("#nombreCategoria").val();
         let action = 'insertar_cat';
@@ -57,7 +61,7 @@ $(document).ready(function(){
         })
         
         $("#guardarCat").text("Actualizar").data("actualizar", 1).data("id",idCat);
-        $(".modal-title").text("Editar Usuario");
+        $(".modal-title").text("Editar Categoria");
         $("#modal").modal("show");
 
     });
@@ -83,8 +87,12 @@ $(document).ready(function(){
 
     });
 
+/*
+|||||||||||||||||||||||||||
+|||| S E R V I C I O S ||||
+|||||||||||||||||||||||||||
+*/
 
-    //SERVICIOS
     $("#guardarServ").click(function(){
         let nomServ = $("#nomServ").val();
         let listaCat= $("#listaCat").val();
@@ -170,9 +178,97 @@ $(document).ready(function(){
 
     });
 
+/*
+|||||||||||||||||||||||||||||
+|||| M A T E R I A L E S ||||
+|||||||||||||||||||||||||||||
+*/
 
+    $("#guardarMat").click(function(){
+        let nomMat = $("#nomMat").val();
+        let listaServ= $("#listaServ").val();
+        let cantMat = $("#cantMat").val();
+        let action = 'insertar_mat';
+        let obj = {
+            nomMat : nomMat,
+            listaServ : listaServ,
+            cantMat : cantMat,
+            action : action
+        }
 
+        if($(this).data("actualizar3")==1){
+            obj["action"] = 'editar_mat';
+            obj["idMat"] = $(this).data("id");
+            //console.log(idServ);
+            $(this).removeData("actualizar3").removeData("id");
+        }
 
+        if(nomMat=="" || listaServ==0 || cantMat==""){
+            alert("Escribe un nombre, agrega una cantidad o seleccione un servicio!");
+        }
+        else{
+            $.ajax({
+                url: "../backend/funciones.php",
+                type: "POST",
+                async: true,
+                data: obj, 
+                success: function(response){
+                    console.log(response);
+                    location.reload();
+                }
+            })
+        }
+    });
 
+    $(".editarMat").click(function(){
+        let idMat = $(this).data("id");
+        let action = 'consultar_mat';
+        let obj = {
+            idMat : idMat,
+            action : action
+        }
+        //alert("d");
+
+        $.ajax({
+            url: "../backend/funciones.php",
+            type: "POST",
+            async: true,
+            dataType: "json",
+            data: obj, 
+            success: function(data){
+                //console.log(data);
+                //console.log(response);
+                $('#listaServ').val(data.info.mat_serv);
+                $('#nomMat').val(data.info.mat_nom);
+                $('#cantMat').val(data.info.mat_cantper);
+            }
+        })
+        
+        $("#guardarMat").text("Actualizar").data("actualizar3", 1).data("id",idMat);
+        $(".modal-title").text("Editar Material");
+        $("#modalM").modal("show");
+
+    });
+
+    $(".borrarMat").click(function(){
+        let idMat = $(this).data("id");
+        let action = 'borrar_mat';
+        let obj = {
+            idMat : idMat,
+            action : action
+        }
+        //alert(idServ);
+        $.ajax({
+            url: "../backend/funciones.php",
+            type: "POST",
+            async: true,
+            data: obj, 
+            success: function(response){
+                console.log(response);
+                location.reload();
+            }
+        })
+
+    });
 
 })

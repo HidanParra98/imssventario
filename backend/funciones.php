@@ -30,12 +30,27 @@ if($_POST){
         case "editar_serv":
             editar_serv();
         break;
-        /*case: "editar_serv":
-            editar_serv();
-        break;*/
+        case "insertar_mat":
+            insertar_mat();
+        break;
+        case "borrar_mat":
+            borrar_mat();
+        break;
+        case "consultar_mat":
+            consultar_mat();
+        break;
+        case "editar_mat":
+            editar_mat();
+        break;
 
       }
 }
+
+/*
+||||||||||||||||||||||||||||||||||
+||||||| C A T E G O R I A S|||||||
+||||||||||||||||||||||||||||||||||
+*/
 
 function insertar_cat(){
 
@@ -170,6 +185,74 @@ function borrar_serv(){
 
 }
 
+/*
+||||||||||||||||||||||||||||||||||
+||||| M A T E R I A L E S ||||||||
+||||||||||||||||||||||||||||||||||
+*/
 
+function insertar_mat(){
+    include '../backend/conexion.php';
+    //print_r($_POST);
+    extract($_POST);
+
+    $consulta = mysqli_query($conn,"INSERT INTO materiales (mat_serv,  mat_nom, mat_cantper) VALUES ('$listaServ', '$nomMat', '$cantMat')");
+
+    if($consulta){
+        echo ("insertar!");
+    }else{
+        echo ("no se inserto");
+    }
+}
+
+function borrar_mat(){
+    include '../backend/conexion.php';
+    extract($_POST);
+    //print_r($_POST);
+
+    $consulta = mysqli_query($conn,"DELETE FROM materiales WHERE mat_id = $idMat");
+
+    if($consulta){
+        echo ("borrar!");
+    }else{
+        echo ("no se borro");
+    }
+}
+
+function editar_mat(){
+    include '../backend/conexion.php';
+    extract($_POST);
+
+    $consulta = mysqli_query($conn,"UPDATE materiales SET mat_serv = '$listaServ', mat_nom = '$nomMat', mat_cantper = '$cantMat' WHERE mat_id = $idMat");
+
+    if($consulta){
+        echo("editar!");
+    }else{
+        echo("error");
+    }
+
+}
+
+function consultar_mat(){
+    include '../backend/conexion.php';
+    extract($_POST);
+    //print_r($_POST);
+    
+    $consulta = mysqli_query($conn,"SELECT mat_serv, mat_nom, mat_cantper FROM materiales WHERE mat_id = $idMat");
+
+    /*if($consulta){
+        echo ("consulta!");
+    }else{
+        echo ("consulta");
+    }*/
+
+    if($consulta->num_rows > 0){
+        $info = $consulta->fetch_assoc();
+        $data['info'] = $info;
+    }else{
+        echo("error");
+    }
+    echo json_encode($data);
+}
 
 ?>
