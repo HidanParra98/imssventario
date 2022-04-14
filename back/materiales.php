@@ -1,6 +1,13 @@
 <?php
 include '../backend/conexion.php';
 
+session_start();
+    $usuario = $_SESSION['username'];
+    
+    if(!isset($usuario)){
+        header("location: ../index.html");
+    }
+
 ?>
 <html lang="en">
 <head>
@@ -26,6 +33,9 @@ include '../backend/conexion.php';
       <!--GRUPO DE BOTONES-->
       <ul class="navbar-nav mr-auto">
         <!--DEMAS BOTONES-->
+        <li class="nav-item">
+          <a class="nav-link" href="<?php echo '../back/menu.php';?>"><strong>MENU PRINCIPAL</strong></a>
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="<?php echo '../back/categorias.php';?>">CATEGORIAS</a>
         </li>
