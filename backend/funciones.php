@@ -27,6 +27,9 @@ if($_POST){
         case "consultar_serv":
             consultar_serv();
         break;
+        case "editar_serv":
+            editar_serv();
+        break;
         /*case: "editar_serv":
             editar_serv();
         break;*/
@@ -116,15 +119,15 @@ function insertar_serv(){
 
 function editar_serv(){
     include '../backend/conexion.php'; 
-    //extract($_POST);
-    print_r($_POST);  
-    /*$consulta = mysqli_query($conn,"UPDATE servicios SET ser_cat = '$listaCat', ser_nom = '$nomServ' WHERE cat_id = $idServ");
+    extract($_POST);
+    //print_r($_POST);  
+    $consulta = mysqli_query($conn,"UPDATE servicios SET ser_cat = '$listaCat', ser_nom = '$nomServ' WHERE ser_id = $idServ");
 
     if($consulta){
         echo("editar!");
     }else{
         echo("error");
-    }*/
+    }
 
 }
 

@@ -95,12 +95,12 @@ $(document).ready(function(){
             action: action
         }
 
-        /*if($(this).data("actualizar2")==1){
+        if($(this).data("actualizar2")==1){
             obj["action"] = 'editar_serv';
             obj["idServ"] = $(this).data("id");
-            console.log(idServ);
+            //console.log(idServ);
             $(this).removeData("actualizar2").removeData("id");
-        }*/
+        }
 
         if(nomServ=="" || listaCat==0){
             alert("Escribe un nombre o seleccione una categoria!");
@@ -113,7 +113,7 @@ $(document).ready(function(){
                 data: obj,
                 success: function(response){
                     console.log(response);
-                    //location.reload();
+                    location.reload();
                 }
             })
         }
@@ -135,7 +135,7 @@ $(document).ready(function(){
             dataType: "json",
             data: obj, 
             success: function(data){
-                console.log(data);
+                //console.log(data);
                 //console.log(response);
                 $('#listaCat').val(data.info.ser_cat);
                 $('#nomServ').val(data.info.ser_nom);
