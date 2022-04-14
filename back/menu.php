@@ -3,6 +3,7 @@
 
     session_start();
     $usuario = $_SESSION['username'];
+    //echo ($usuario);
     
     if(!isset($usuario)){
         header("location: ../index.html");
@@ -49,10 +50,20 @@
                 <button class="btn btn-secondary d-block botones">Recuperacion</button>
             </div>
         </div>
+        <?php
+            $consulta = mysqli_query($conn,"SELECT adm_rol FROM admin WHERE adm_usuario = '$usuario'");
+            $si=1;
+            $no=2;
+            $fila = mysqli_fetch_array($consulta);
+            if ($fila['adm_rol'] == 1) { 
+        ?>
         <div class="row">
         <button class="btn btn-primary d-block botones adm">
             <a href="<?php echo '../back/categorias.php';?>">ADMINISTRAR</a>
         </button>
+        <?php
+            }
+        ?>
         <button class="btn btn-danger d-block botones salir">
             <a href="<?php echo '../backend/salir.php';?>">SALIR</a>
         </button>
