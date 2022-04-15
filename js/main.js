@@ -271,4 +271,31 @@ $(document).ready(function(){
 
     });
 
+/*
+||||||||||||||||||||||||||||||
+|||||||| F E C H A S |||||||||
+||||||||||||||||||||||||||||||
+*/
+
+    $("#fecha").change(function(){
+        let fecha = $("#fecha").val();
+        let action = 'setear_fechas';
+        let obj = {
+            fecha : fecha,
+            action : action
+        }
+        $.ajax({
+            url: "../backend/funciones.php",
+            type: "POST",
+            async: true,
+            data: obj, 
+            success: function(response){
+                console.log(response);
+                //location.reload();
+            }
+        })
+        //console.log(fecha);
+    });
+
+
 })
