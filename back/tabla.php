@@ -26,7 +26,11 @@ session_start();
     <h1 class="navbar-brand">SERVICIO</h1>
     <!--CALENDARIO-->
     <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" id="fecha" type="date">
+      <?php 
+        date_default_timezone_set('America/Cancun');
+        $fecha = date("Y-m-d");
+      ?>
+      <input class="form-control mr-sm-2" id="fecha" type="date" value="<?php echo $fecha;?>">
     </form>
     <!--BOTON TOGGLER-->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

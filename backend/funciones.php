@@ -273,11 +273,11 @@ function setear_fechas(){
             //echo("DOMINGO: $fecha");
             $fecha = strtotime('-1 day', strtotime($fecha)); //CALULAMOS AYER
             $fechar = date("Y-m-d", $fecha); //FORMATEAMOS AYER
-            for($i=1;$i<8;$i++){
-                $fecharx = strtotime("+ $i day", strtotime($fechar));
-                $fecharz = date('Y-m-d', $fecharx);
-
-                print_r("FECHA $fecharz \n");
+            for($i=1;$i<8;$i++){//EL DIA DE AYER + 1 ES IGUAL A DOMINGO HASTA LLEGAR A 7 PORQUE SON SIETE DIAS DE LA SEMANA
+                $fecharx = strtotime("+ $i day", strtotime($fechar));//INCREMENTO PARA OBTENER LOS DIAS DE LA SEMANA
+                $fecharz = date('Y-m-d', $fecharx); //FORMATEAMOS
+                //$fecharz = date('d-m-Y', $fecharx);
+                print_r("FECHA $fecharz \n"); //IMPRIMIMOS
             }
         break;
         case 1:
