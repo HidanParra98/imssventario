@@ -277,7 +277,7 @@ $(document).ready(function(){
 ||||||||||||||||||||||||||||||
 */
     //MOSTRAR CALENDARIO SEMANAL CON LA FECHA ACTUAL
-    let fecha = $("#fecha").val();
+    /*let fecha = $("#fecha").val();
     let action = 'setear_fechas';
     let obj = {
         fecha : fecha,
@@ -309,7 +309,26 @@ $(document).ready(function(){
                 console.log(response);
             }
         })
-    });
+    });*/
     
-
+    $(".nomSe").click(function(){
+        let idSer = $(this).data("id");
+        let fecha = $("#fecha").data("fecha");
+        let action = 'setear_fechas';
+        let obj = {
+        idSer : idSer,
+        fecha : fecha,
+        action : action
+        }
+    $.ajax({
+        url: "../backend/funciones.php",
+        type: "POST",
+        async: true,
+        data: obj, 
+        success: function(response){
+            console.log(response);
+            location.href="../back/tabla.php";
+        }
+        })
+    });
 })

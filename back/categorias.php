@@ -81,7 +81,7 @@ session_start();
           <td><?php echo $fila["cat_nombre"]?></td>
           <td>
             <button type="button" data-id="<?php echo $fila["cat_id"];?>" class="btn btn-info editarCat">Editar</button>
-            <button type="button" data-id="<?php echo $fila["cat_id"];?>" class="btn btn-danger borrarCat">Borrar</button></td>
+            <button type="button" data-id="<?php echo $fila["cat_id"];?>" class="btn btn-danger borrarCat">Borrar</button>
           </td>
         </tr>
     <?php
