@@ -353,7 +353,7 @@ $(document).ready(function(){
         let columna = $(this).data("fecha");
         if(columna.length > 0){
             fila = $(this).closest('tr').attr("id");
-            $(this).text('pods');
+            //$(this).html("<input type='text' autofocus>");
             console.log(columna, fila);
         }        
         

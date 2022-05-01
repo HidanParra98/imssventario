@@ -99,7 +99,7 @@ session_start();
       <th scope="col">#<br></th>
       <th scope="col" id="mat">MATERIAL DEL<br>SERVICIO</th>
       <th scope="col" id="can">CANTIDAD<br>PERMITIDA</th>
-      <th scope="col" data-fecha="a" id="dom">DOMINGO<br><?php echo $data['dom'];?></th>
+      <th scope="col" data-fecha="a" id="dom">DOMINGO&nbsp;<br><?php echo $data['dom'];?></th>
       <th scope="col" data-fecha="b" id="lun">LUNES&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><?php echo $data['lun'];?></th>
       <th scope="col" data-fecha="c" id="mar">MARTES&nbsp;&nbsp;<br><?php echo $data['mar'];?></th>
       <th scope="col" data-fecha="d" id="mie">MIERCOLES<br><?php echo $data['mie'];?></th>
