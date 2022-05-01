@@ -276,23 +276,6 @@ $(document).ready(function(){
 |||||||| F E C H A S |||||||||
 ||||||||||||||||||||||||||||||
 */
-    //MOSTRAR CALENDARIO SEMANAL CON LA FECHA ACTUAL
-    /*let fecha = $("#fecha").val();
-    let action = 'setear_fechas';
-    let obj = {
-        fecha : fecha,
-        action : action
-    }
-    $.ajax({
-        url: "../backend/funciones.php",
-        type: "POST",
-        async: true,
-        data: obj, 
-        success: function(response){
-            console.log(response);
-        }
-        })*/
-    //DETECTAR CLICK EN EL CALENDARIO PARA MOSTRAR UNA FECHA ESPECIFICA
     $("#fecha").change(function(){
         
         let fecha = $("#fecha").val();
@@ -338,17 +321,6 @@ $(document).ready(function(){
         //dataType: "JSON",
         data: obj, 
         success: function(response){
-            //console.log(data[0]);
-            /*if(data==1){
-                console.log("Se recibieron datos");
-                location.href="../back/tabla.php";
-            }
-            if(data==2){
-                console.log("No se recicio nada manito :c");
-            }*/
-            //console.log(response);
-            //objeto = $.parseJSON(data.toString()); // lo convierte a Array
-            //console.log(objeto);
             location.assign('../back/tabla.php');
             
         }
