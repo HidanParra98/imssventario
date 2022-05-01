@@ -1,5 +1,6 @@
 <?php
 include '../backend/conexion.php';
+include '../backend/funciones.php';
 
 session_start();
     $usuario = $_SESSION['username'];
@@ -7,6 +8,27 @@ session_start();
     if(!isset($usuario)){
         header("location: ../index.html");
     }
+
+  if($_POST){ 
+    extract($_POST);
+    $_SESSION['fechaActual'] = $fechaActual;
+    $_SESSION['idActual']  = $idActual;
+    $_SESSION['nomActual'] = $servActual;
+
+    header("location: ../back/tabla.php");
+    
+  }
+  $idS = $_SESSION['idActual'];
+  
+  $consulta = mysqli_query($conn,"SELECT ser_id, ser_nom FROM servicios WHERE ser_id = '$idS'");
+  $fila = mysqli_fetch_array($consulta);
+
+  $fechaS = $_SESSION['fechaActual'];
+  //var_dump($fechaS);
+  $data = setear_fechas($fechaS);
+  //var_dump($json);
+  //echo $data['Domingo'];
+
 ?>
 
 <html lang="en">
@@ -23,12 +45,12 @@ session_start();
 <div class="container-fluid padre">
   <!--NAVBAR-->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <h1 class="navbar-brand">SERVICIO</h1>
+    <h1 class="navbar-brand"><?php echo strtoupper($fila['ser_nom']); ?></h1>
     <!--CALENDARIO-->
     <form class="form-inline my-2 my-lg-0">
       <?php 
         date_default_timezone_set('America/Cancun');
-        $fecha = date("Y-m-d");
+        $fecha = date("Y-m-d");    
       ?>
       <input class="form-control mr-sm-2" id="fecha" type="date" value="<?php echo $fecha;?>">
     </form>
@@ -74,23 +96,28 @@ session_start();
   <table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">MATERIAL</th>
-      <th scope="col">CANTIDAD</th>
-      <th scope="col">DOMINGO</th>
-      <th scope="col">LUNES</th>
-      <th scope="col">MARTES</th>
-      <th scope="col">MIERCOLES</th>
-      <th scope="col">JUEVES</th>
-      <th scope="col">VIERNES</th>
-      <th scope="col">SABADO</th>
+      <th scope="col">#<br></th>
+      <th scope="col" id="mat">MATERIAL DEL<br>SERVICIO</th>
+      <th scope="col" id="can">CANTIDAD<br>PERMITIDA</th>
+      <th scope="col" id="dom">DOMINGO<br><?php echo $data['dom'];?></th>
+      <th scope="col" id="lun">LUNES<br><?php echo $data['lun'];?></th>
+      <th scope="col" id="mar">MARTES<br><?php echo $data['mar'];?></th>
+      <th scope="col" id="mie">MIERCOLES<br><?php echo $data['mie'];?></th>
+      <th scope="col" id="jue">JUEVES<br><?php echo $data['jue'];?></th>
+      <th scope="col" id="vie">VIERNES<br><?php echo $data['vie'];?></th>
+      <th scope="col" id="sab">SABADO<br><?php echo $data['sab'];?></th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Material 1</td>
-      <td>Cantidad 1</td>
+    <?php
+      $consulta1 = mysqli_query($conn,"SELECT mat_id, mat_cantper, mat_nom FROM materiales WHERE mat_serv = '$idS'");
+      $i=1;
+      while($fila1 = mysqli_fetch_array($consulta1)){
+    ?>
+    <tr id="<?php echo $fila1["mat_id"];?>">
+      <th scope="row"><?php echo $i;?></th>
+      <td><?php echo $fila1["mat_nom"];?></td>
+      <td><?php echo $fila1["mat_cantper"];?></td>
       <td>Numero D</td>
       <td>Numero L</td>
       <td>Numero M</td>
@@ -99,30 +126,10 @@ session_start();
       <td>Numero V</td>
       <td>Numero S</td>
     </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Material 2</td>
-      <td>Cantidad 2</td>
-      <td>Numero D</td>
-      <td>Numero L</td>
-      <td>Numero M</td>
-      <td>Numero M</td>
-      <td>Numero J</td>
-      <td>Numero V</td>
-      <td>Numero S</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Material 3</td>
-      <td>Cantidad 3</td>
-      <td>Numero D</td>
-      <td>Numero L</td>
-      <td>Numero M</td>
-      <td>Numero M</td>
-      <td>Numero J</td>
-      <td>Numero V</td>
-      <td>Numero S</td>
-    </tr>
+    <?php
+      $i++;
+      }
+    ?>
   </tbody>
 </table>
 </div>

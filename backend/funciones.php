@@ -45,6 +45,9 @@ if($_POST){
         case "setear_fechas":
             setear_fechas();
         break;
+        case "tabla_servicios":
+            tabla_servicios();
+        break;
 
       }
 }
@@ -264,92 +267,111 @@ function consultar_mat(){
 ||||||||||||||||||||||||||||||
 */
 
-function setear_fechas(){
+function setear_fechas($fecha){
     //print_r($_POST);
-    extract($_POST);
+    //extract($_POST);
     $dSemana = date("w", strtotime($fecha)); //OBTENEMOS EL NUMERO DE DIA DE LA SEMANA
     switch ($dSemana){//EN BASE AL NUMERO DEL DIA SABREMOS QUE DIA DE LA SEMANA ES:
         case 0:
             //echo("DOMINGO: $fecha");
-            $fecha = strtotime('-1 day', strtotime($fecha)); //CALULAMOS AYER
-            $fechar = date("Y-m-d", $fecha); //FORMATEAMOS AYER
-            for($i=1;$i<8;$i++){//EL DIA DE AYER + 1 ES IGUAL A DOMINGO HASTA LLEGAR A 7 PORQUE SON SIETE DIAS DE LA SEMANA
-                $fecharx = strtotime("+ $i day", strtotime($fechar));//INCREMENTO PARA OBTENER LOS DIAS DE LA SEMANA
-                $fecharz = date('Y-m-d', $fecharx); //FORMATEAMOS
-                //$fecharz = date('d-m-Y', $fecharx);
-                print_r("FECHA $fecharz \n"); //IMPRIMIMOS
-            }
+            $fecha = strtotime('-1 day', strtotime($fecha)); //CALCULAMOS EL SABADO DELA SEMANA ANTERIOR
+            $fechar = date($fecha);//CONVERTIMOS EL STRING A FORMATO DATE
+            
+            $ar = arrayfechas($fechar);
+            return $ar;
+            
         break;
         case 1:
             //echo("LUNES: $fecha");
             $fecha = strtotime('-2 day', strtotime($fecha));
-            $fechar = date("Y-m-d", $fecha);
-            for($i=1;$i<8;$i++){
-                $fecharx = strtotime("+ $i day", strtotime($fechar));
-                $fecharz = date('Y-m-d', $fecharx);
+            $fechar = date($fecha);
+            
+            $ar = arrayfechas($fechar);
+            return $ar;
 
-                print_r("FECHA $fecharz \n");
-            }
         break;
         case 2:
             //echo ("MARTES: $fecha");
             $fecha = strtotime('-3 day', strtotime($fecha));
-            $fechar = date("Y-m-d", $fecha);
-            for($i=1;$i<8;$i++){
-                $fecharx = strtotime("+ $i day", strtotime($fechar));
-                $fecharz = date('Y-m-d', $fecharx);
+            $fechar = date($fecha);
+            
+            $ar = arrayfechas($fechar);
+            return $ar;
 
-                print_r("FECHA $fecharz \n");
-            }
         break;
         case 3:
             //echo ("MIERCOLES: $fecha");
             $fecha = strtotime('-4 day', strtotime($fecha));
-            $fechar = date("Y-m-d", $fecha);
-            for($i=1;$i<8;$i++){
-                $fecharx = strtotime("+ $i day", strtotime($fechar));
-                $fecharz = date('Y-m-d', $fecharx);
+            $fechar = date($fecha);
+            
+            $ar = arrayfechas($fechar);
+            return $ar;
 
-                print_r("FECHA $fecharz \n");
-            }
         break;
         case 4:
             //echo ("JUEVES: $fecha");
             $fecha = strtotime('-5 day', strtotime($fecha));
-            $fechar = date("Y-m-d", $fecha);
-            for($i=1;$i<8;$i++){
-                $fecharx = strtotime("+ $i day", strtotime($fechar));
-                $fecharz = date('Y-m-d', $fecharx);
+            $fechar = date($fecha);
+            
+            $ar = arrayfechas($fechar);
+            return $ar;
 
-                print_r("FECHA $fecharz \n");
-            }
         break;
         case 5:
             //echo ("VIERNES: $fecha");
             $fecha = strtotime('-6 day', strtotime($fecha));
-            $fechar = date("Y-m-d", $fecha);
-            for($i=1;$i<8;$i++){
-                $fecharx = strtotime("+ $i day", strtotime($fechar));
-                $fecharz = date('Y-m-d', $fecharx);
+            $fechar = date($fecha);
+            
+            $ar = arrayfechas($fechar);
+            return $ar;
 
-                print_r("FECHA $fecharz \n");
-            }
         break;
         case 6:
             //echo ("SABADO: $fecha");
             $fecha = strtotime('-7 day', strtotime($fecha));
-            $fechar = date("Y-m-d", $fecha);
-            for($i=1;$i<8;$i++){
-                $fecharx = strtotime("+ $i day", strtotime($fechar));
-                $fecharz = date('Y-m-d', $fecharx);
-
-                print_r("FECHA $fecharz \n");
-            }
+            $fechar = date($fecha);
+            
+            $ar = arrayfechas($fechar);
+            return $ar;
+            
         break;
 
 
     }
 
+}
+
+function arrayfechas($cadena){
+    $diasSemana = ['dom','lun','mar', 'mie', 'jue', 'vie', 'sab'];
+    $fechasSemana = array(); //array para guardar las fechas
+    $data = array();
+    $j = 0;  //variable para llenar el array
+    $fecha = date("Y-m-d", $cadena);
+    for($i=1;$i<8;$i++){
+
+        $dia = strtotime("+ $i day", strtotime($fecha));//Sumamos el recorrido del ciclo a la fecha del sabado pasado
+        $dias = date('d-m-y', $dia);//Formateamos a String
+
+        $fechasSemana[$j] = $dias; // llenar el array desde la pocision 0
+        $j++; //aumentar j
+        
+    }
+    $data = array_combine($diasSemana,$fechasSemana);
+    
+    return $data;
+}
+
+/*
+||||||||||||||||||||||||||||||
+||||||||| T A B L A ||||||||||
+||||||||||||||||||||||||||||||
+*/
+
+function tabla_servicios(){
+    extract($_POST);
+    $data = setear_fechas($fecha);
+
+    echo json_encode($data);
 }
 
 ?>

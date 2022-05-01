@@ -291,43 +291,66 @@ $(document).ready(function(){
         success: function(response){
             console.log(response);
         }
-        })
+        })*/
     //DETECTAR CLICK EN EL CALENDARIO PARA MOSTRAR UNA FECHA ESPECIFICA
     $("#fecha").change(function(){
+        
         let fecha = $("#fecha").val();
-        let action = 'setear_fechas';
+        let action = 'tabla_servicios';
         let obj = {
         fecha : fecha,
         action : action
         }
+        //console.log(obj);
         $.ajax({
             url: "../backend/funciones.php",
             type: "POST",
+            dataType: "JSON",
             async: true,
             data: obj, 
-            success: function(response){
-                console.log(response);
+            success: function(data){
+                $('#dom').html("DOMINGO<br>" + data.dom);//text("DOMINGO " + data.dom);
+                $('#lun').html("LUNES<br>" + data.lun);
+                $('#mar').html("MARTES<br>" + data.mar);
+                $('#mie').html("MIERCOLES<br>" + data.mie);
+                $('#jue').html("JUEVES<br>" + data.jue);
+                $('#vie').html("VIERNES<br>" + data.vie);
+                $('#sab').html("SABADO<br>" + data.sab);
             }
         })
-    });*/
+    });
     
     $(".nomSe").click(function(){
-        let idSer = $(this).data("id");
-        let fecha = $("#fecha").data("fecha");
-        let action = 'setear_fechas';
+        let idActual = $(this).data("id");
+        let fechaActual = $("#fecha").data("fecha");
+        let servActual = $(this).text();
+        let action = 'tabla_servicios';
         let obj = {
-        idSer : idSer,
-        fecha : fecha,
+        idActual : idActual,
+        fechaActual : fechaActual,
+        servActual : servActual,
         action : action
         }
     $.ajax({
-        url: "../backend/funciones.php",
+        url: "../back/tabla.php",
         type: "POST",
         async: true,
+        //dataType: "JSON",
         data: obj, 
         success: function(response){
-            console.log(response);
-            location.href="../back/tabla.php";
+            //console.log(data[0]);
+            /*if(data==1){
+                console.log("Se recibieron datos");
+                location.href="../back/tabla.php";
+            }
+            if(data==2){
+                console.log("No se recicio nada manito :c");
+            }*/
+            //console.log(response);
+            //objeto = $.parseJSON(data.toString()); // lo convierte a Array
+            //console.log(objeto);
+            location.assign('../back/tabla.php');
+            
         }
         })
     });

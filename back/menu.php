@@ -17,7 +17,7 @@
     
     date_default_timezone_set('America/Cancun');
     $fecha = date("Y-m-d");
-    
+    //$fecha = "2022-05-29"
 ?>
 <html lang="en">
 <head>
@@ -58,6 +58,7 @@
                 $i++;
                 }
                 //FIN DEL PRIMER WHILE
+                
             ?>
         </div>
         <div class="row">
