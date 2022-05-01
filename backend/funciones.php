@@ -322,8 +322,8 @@ function setear_fechas($fecha){
             $fecha = strtotime('-6 day', strtotime($fecha));
             $fechar = date($fecha);
             
-            $ar = arrayfechas($fechar);
-            return $ar;
+            $ar = arrayfechas($fechar);//creamos una variable para la función procesada
+            return $ar;//retornamos la variable
 
         break;
         case 6:
@@ -356,9 +356,9 @@ function arrayfechas($cadena){
         $j++; //aumentar j
         
     }
-    $data = array_combine($diasSemana,$fechasSemana);
+    $data = array_combine($diasSemana,$fechasSemana);//combinar para hacer array asociativo y facilitar busquedas
     
-    return $data;
+    return $data;//retornamos el array asociativo
 }
 
 /*
@@ -369,9 +369,9 @@ function arrayfechas($cadena){
 
 function tabla_servicios(){
     extract($_POST);
-    $data = setear_fechas($fecha);
+    $data = setear_fechas($fecha);//variable para guardar el return
 
-    echo json_encode($data);
+    echo json_encode($data);//imprimir variable codificada en json
 }
 
 ?>

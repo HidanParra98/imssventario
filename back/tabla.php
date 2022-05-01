@@ -95,17 +95,17 @@ session_start();
   <!--INICIO DEL TABLE-->
   <table class="table">
   <thead>
-    <tr>
+    <tr class="colMat"> 
       <th scope="col">#<br></th>
       <th scope="col" id="mat">MATERIAL DEL<br>SERVICIO</th>
       <th scope="col" id="can">CANTIDAD<br>PERMITIDA</th>
-      <th scope="col" id="dom">DOMINGO<br><?php echo $data['dom'];?></th>
-      <th scope="col" id="lun">LUNES<br><?php echo $data['lun'];?></th>
-      <th scope="col" id="mar">MARTES<br><?php echo $data['mar'];?></th>
-      <th scope="col" id="mie">MIERCOLES<br><?php echo $data['mie'];?></th>
-      <th scope="col" id="jue">JUEVES<br><?php echo $data['jue'];?></th>
-      <th scope="col" id="vie">VIERNES<br><?php echo $data['vie'];?></th>
-      <th scope="col" id="sab">SABADO<br><?php echo $data['sab'];?></th>
+      <th scope="col" data-fecha="a" id="dom">DOMINGO<br><?php echo $data['dom'];?></th>
+      <th scope="col" data-fecha="b" id="lun">LUNES&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><?php echo $data['lun'];?></th>
+      <th scope="col" data-fecha="c" id="mar">MARTES&nbsp;&nbsp;<br><?php echo $data['mar'];?></th>
+      <th scope="col" data-fecha="d" id="mie">MIERCOLES<br><?php echo $data['mie'];?></th>
+      <th scope="col" data-fecha="e" id="jue">JUEVES&nbsp;&nbsp;&nbsp;&nbsp;<br><?php echo $data['jue'];?></th>
+      <th scope="col" data-fecha="f" id="vie">VIERNES&nbsp;&nbsp;<br><?php echo $data['vie'];?></th>
+      <th scope="col" data-fecha="g" id="sab">SABADO&nbsp;&nbsp;&nbsp;<br><?php echo $data['sab'];?></th>
     </tr>
   </thead>
   <tbody>
@@ -114,17 +114,17 @@ session_start();
       $i=1;
       while($fila1 = mysqli_fetch_array($consulta1)){
     ?>
-    <tr id="<?php echo $fila1["mat_id"];?>">
+    <tr class="filaMat" id="<?php echo $fila1["mat_id"];?>">
       <th scope="row"><?php echo $i;?></th>
       <td><?php echo $fila1["mat_nom"];?></td>
       <td><?php echo $fila1["mat_cantper"];?></td>
-      <td>Numero D</td>
-      <td>Numero L</td>
-      <td>Numero M</td>
-      <td>Numero M</td>
-      <td>Numero J</td>
-      <td>Numero V</td>
-      <td>Numero S</td>
+      <td class="cantDom" data-fecha="<?php echo $data['dom'];?>">Numero D</td>
+      <td class="cantLun" data-fecha="<?php echo $data['lun'];?>">Numero L</td>
+      <td class="cantMar" data-fecha="<?php echo $data['mar'];?>">Numero M</td>
+      <td class="cantMie" data-fecha="<?php echo $data['mie'];?>">Numero M</td>
+      <td class="cantJue" data-fecha="<?php echo $data['jue'];?>">Numero J</td>
+      <td class="cantVie" data-fecha="<?php echo $data['vie'];?>">Numero V</td>
+      <td class="cantSab" data-fecha="<?php echo $data['sab'];?>">Numero S</td>
     </tr>
     <?php
       $i++;

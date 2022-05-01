@@ -293,14 +293,22 @@ $(document).ready(function(){
             data: obj, 
             success: function(data){
                 $('#dom').html("DOMINGO<br>" + data.dom);//text("DOMINGO " + data.dom);
+                    $(".cantDom").data("fecha", data.dom);
                 $('#lun').html("LUNES<br>" + data.lun);
+                    $(".cantLun").data("fecha", data.lun);
                 $('#mar').html("MARTES<br>" + data.mar);
+                    $(".cantMar").data("fecha", data.mar);
                 $('#mie').html("MIERCOLES<br>" + data.mie);
+                    $(".cantMie").data("fecha", data.mie);
                 $('#jue').html("JUEVES<br>" + data.jue);
+                    $(".cantJue").data("fecha", data.jue);
                 $('#vie').html("VIERNES<br>" + data.vie);
+                    $(".cantVie").data("fecha", data.vie);
                 $('#sab').html("SABADO<br>" + data.sab);
+                    $(".canSab").data("fecha", data.sab);
             }
         })
+
     });
     
     $(".nomSe").click(function(){
@@ -326,4 +334,29 @@ $(document).ready(function(){
         }
         })
     });
+
+
+
+    /*$(".filaMat").click(function(){
+        let ir = $(this).attr("id");
+        if(ir.length > 0){
+            er = $(this).find('td').text();
+            console.log(ir, er);
+        }else{
+            console.log("waaa");
+        }
+        
+        //alert(" Fila: " + ir);
+    });*/
+    $("td").click(function(){
+        let action = 'respuesta';
+        let columna = $(this).data("fecha");
+        if(columna.length > 0){
+            fila = $(this).closest('tr').attr("id");
+            $(this).text('pods');
+            console.log(columna, fila);
+        }        
+        
+    });
+    
 })
