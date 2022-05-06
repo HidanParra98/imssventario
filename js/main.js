@@ -336,26 +336,15 @@ $(document).ready(function(){
     });
 
 
-
-    /*$(".filaMat").click(function(){
-        let ir = $(this).attr("id");
-        if(ir.length > 0){
-            er = $(this).find('td').text();
-            console.log(ir, er);
-        }else{
-            console.log("waaa");
-        }
-        
-        //alert(" Fila: " + ir);
-    });*/
-    $("td").click(function(){
+    $("td").dblclick(function(){
         let action = 'respuesta';
         let columna = $(this).data("fecha");
-        if(columna.length > 0){
-            fila = $(this).closest('tr').attr("id");
-            //$(this).html("<input type='text' autofocus>");
-            console.log(columna, fila);
-        }        
+        let fila = $(this).closest('tr').attr("id");
+            
+        $(this).html("<p> merde </p>");
+        $("#exampleModal").modal("show");
+        $(".modal-body").html("<p>" + columna + "</p>" + "<p>" + fila + "</p>");
+        console.log(columna, fila);      
         
     });
     

@@ -350,7 +350,7 @@ function arrayfechas($cadena){
     for($i=1;$i<8;$i++){
 
         $dia = strtotime("+ $i day", strtotime($fecha));//Sumamos el recorrido del ciclo a la fecha del sabado pasado
-        $dias = date('d-m-Y', $dia);//Formateamos a String
+        $dias = date('Y-m-d', $dia);//Formateamos a String
 
         $fechasSemana[$j] = $dias; // llenar el array desde la pocision 0
         $j++; //aumentar j

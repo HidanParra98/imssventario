@@ -26,6 +26,8 @@ session_start();
   $fechaS = $_SESSION['fechaActual'];
   //var_dump($fechaS);
   $data = setear_fechas($fechaS);
+  extract($data);
+  //print_r($data);
   //var_dump($json);
   //echo $data['Domingo'];
 
@@ -99,32 +101,34 @@ session_start();
       <th scope="col">#<br></th>
       <th scope="col" id="mat">MATERIAL DEL<br>SERVICIO</th>
       <th scope="col" id="can">CANTIDAD<br>PERMITIDA</th>
-      <th scope="col" data-fecha="a" id="dom">DOMINGO&nbsp;<br><?php echo $data['dom'];?></th>
-      <th scope="col" data-fecha="b" id="lun">LUNES&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><?php echo $data['lun'];?></th>
-      <th scope="col" data-fecha="c" id="mar">MARTES&nbsp;&nbsp;<br><?php echo $data['mar'];?></th>
-      <th scope="col" data-fecha="d" id="mie">MIERCOLES<br><?php echo $data['mie'];?></th>
-      <th scope="col" data-fecha="e" id="jue">JUEVES&nbsp;&nbsp;&nbsp;&nbsp;<br><?php echo $data['jue'];?></th>
-      <th scope="col" data-fecha="f" id="vie">VIERNES&nbsp;&nbsp;<br><?php echo $data['vie'];?></th>
-      <th scope="col" data-fecha="g" id="sab">SABADO&nbsp;&nbsp;&nbsp;<br><?php echo $data['sab'];?></th>
+      <th scope="col" data-fecha="a" id="dom">DOMINGO&nbsp;<br><?php echo $dom;?></th>
+      <th scope="col" data-fecha="b" id="lun">LUNES&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><?php echo $lun;?></th>
+      <th scope="col" data-fecha="c" id="mar">MARTES&nbsp;&nbsp;<br><?php echo $mar;?></th>
+      <th scope="col" data-fecha="d" id="mie">MIERCOLES<br><?php echo $mie;?></th>
+      <th scope="col" data-fecha="e" id="jue">JUEVES&nbsp;&nbsp;&nbsp;&nbsp;<br><?php echo $jue;?></th>
+      <th scope="col" data-fecha="f" id="vie">VIERNES&nbsp;&nbsp;<br><?php echo $vie;?></th>
+      <th scope="col" data-fecha="g" id="sab">SABADO&nbsp;&nbsp;&nbsp;<br><?php echo $sab;?></th>
     </tr>
   </thead>
   <tbody>
     <?php
       $consulta1 = mysqli_query($conn,"SELECT mat_id, mat_cantper, mat_nom FROM materiales WHERE mat_serv = '$idS'");
+      //$consulta2 = mysqli_query($conn,"SELECT reg_cant FROM registros WHERE reg_fecha = $data['dom'] AND reg_mat = $fila1['mat_id']");
       $i=1;
       while($fila1 = mysqli_fetch_array($consulta1)){
+      $var = $fila1["mat_id"];
     ?>
     <tr class="filaMat" id="<?php echo $fila1["mat_id"];?>">
       <th scope="row"><?php echo $i;?></th>
       <td><?php echo $fila1["mat_nom"];?></td>
       <td><?php echo $fila1["mat_cantper"];?></td>
-      <td class="cantDom" data-fecha="<?php echo $data['dom'];?>">Numero D</td>
-      <td class="cantLun" data-fecha="<?php echo $data['lun'];?>">Numero L</td>
-      <td class="cantMar" data-fecha="<?php echo $data['mar'];?>">Numero M</td>
-      <td class="cantMie" data-fecha="<?php echo $data['mie'];?>">Numero M</td>
-      <td class="cantJue" data-fecha="<?php echo $data['jue'];?>">Numero J</td>
-      <td class="cantVie" data-fecha="<?php echo $data['vie'];?>">Numero V</td>
-      <td class="cantSab" data-fecha="<?php echo $data['sab'];?>">Numero S</td>
+      <td class="cantDom" data-fecha="<?php echo $data['dom'];?>">cantDom</td>
+      <td class="cantLun" data-fecha="<?php echo $data['lun'];?>">cantLun</td>
+      <td class="cantMar" data-fecha="<?php echo $data['mar'];?>">cantMar</td>
+      <td class="cantMie" data-fecha="<?php echo $data['mie'];?>">cantMie</td>
+      <td class="cantJue" data-fecha="<?php echo $data['jue'];?>">cantJue</td>
+      <td class="cantVie" data-fecha="<?php echo $data['vie'];?>">cantVie</td>
+      <td class="cantSab" data-fecha="<?php echo $data['sab'];?>">cantDom</td>
     </tr>
     <?php
       $i++;
@@ -145,3 +149,23 @@ session_start();
   <script src="../js/main.js"></script>
 </body>
 </html>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Asignar una cantidad</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
