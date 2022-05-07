@@ -322,6 +322,7 @@ $(document).ready(function(){
         servActual : servActual,
         action : action
         }
+        
     $.ajax({
         url: "../back/tabla.php",
         type: "POST",
@@ -335,16 +336,80 @@ $(document).ready(function(){
         })
     });
 
+/*
+||||||||||||||||||||||||||||||||||||||||||||||||||||
+|||||||| E D I C I O N - I N S E R C I O N |||||||||
+||||||||||||||||||||||||||||||||||||||||||||||||||||
+*/
 
     $("td").dblclick(function(){
-        let action = 'respuesta';
-        let columna = $(this).data("fecha");
-        let fila = $(this).closest('tr').attr("id");
+
+//  Si la variable de data tiene fecha, se obtienen los datos, y se procede a realizar las operaciones
+        if($(this).data("fecha")){
+            let servicio = $("#tabServ").data("id");
+            let columna = $(this).data("fecha");
+            let fila = $(this).closest('tr').attr("id");
+            let cantidad =$(this).text();
+            let action = "insertar_cant"
+            let obj = {
+                servicio : servicio,
+                columna : columna,
+                fila : fila,
+                cantidad : cantidad,
+                action : action
+            }
             
-        $(this).html("<p> merde </p>");
-        $("#exampleModal").modal("show");
-        $(".modal-body").html("<p>" + columna + "</p>" + "<p>" + fila + "</p>");
-        console.log(columna, fila);      
+            if(cantidad != ""){
+                $("#guardarCant").text("Actualizar").data("actualizar3", 1);
+                $(".modal-title").text("Editar Material");
+                $("#exampleModal").modal("show");
+
+                obj["action"] = 'consultar_cant';
+                $.ajax({
+                    url: "../backend/funciones.php",
+                    type: "POST",
+                    async: true,
+                        //dataType: "json",
+                    data: obj, 
+                    success: function(response){
+                    console.log(response);
+                        //location.reload();
+                    }
+                })
+            }
+            
+            $("#guardarCant").click(function(){
+                if($(this).data("actualizar3")==1){
+                obj["action"] = 'editar_cant';
+                //console.log(idServ);
+                $(this).removeData("actualizar3").removeData("id");
+                }
+                $.ajax({
+                    url: "../backend/funciones.php",
+                    type: "POST",
+                    async: true,
+                        //dataType: "json",
+                    data: obj, 
+                    success: function(response){
+                    console.log(response);
+                        //location.reload();
+                    }
+                })
+
+            })
+            $("#exampleModal").modal("show");
+            //$("#exampleModal").modal("show");
+            //$(".modal-body").html("<p>" + columna + "</p>" + "<p>" + fila + "</p>");
+            //console.log(obj);
+            //cantidad =$(this).text("holi");
+        }
+        
+//  Si no existe se muestra esto   
+        else{
+            alert("Selección incorrecta");
+            console.log("nada");
+
+        }   
         
     });
     

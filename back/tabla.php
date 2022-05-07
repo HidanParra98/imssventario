@@ -47,7 +47,7 @@ session_start();
 <div class="container-fluid padre">
   <!--NAVBAR-->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <h1 class="navbar-brand"><?php echo strtoupper($fila['ser_nom']); ?></h1>
+    <h1 id="tabServ"class="navbar-brand" data-id="<?php echo ($fila['ser_id']); ?>"><?php echo strtoupper($fila['ser_nom']); ?></h1>
     <!--CALENDARIO-->
     <form class="form-inline my-2 my-lg-0">
       <?php 
@@ -113,23 +113,37 @@ session_start();
   <tbody>
     <?php
       $consulta1 = mysqli_query($conn,"SELECT mat_id, mat_cantper, mat_nom FROM materiales WHERE mat_serv = '$idS'");
-      //$consulta2 = mysqli_query($conn,"SELECT reg_cant FROM registros WHERE reg_fecha = $data['dom'] AND reg_mat = $fila1['mat_id']");
+      
       $i=1;
+      $j=0;
       while($fila1 = mysqli_fetch_array($consulta1)){
       $var = $fila1["mat_id"];
+      $conDom = mysqli_query($conn,"SELECT reg_cant FROM registros WHERE reg_fecha = '$dom' AND reg_mat = $var");
+      $cDom = mysqli_fetch_array($conDom);
+      $conLun = mysqli_query($conn,"SELECT reg_cant FROM registros WHERE reg_fecha = '$lun' AND reg_mat = $var");
+      $cLun = mysqli_fetch_array($conLun);
+      $conMar = mysqli_query($conn,"SELECT reg_cant FROM registros WHERE reg_fecha = '$mar' AND reg_mat = $var");
+      $cMar = mysqli_fetch_array($conMar);
+      $conMie = mysqli_query($conn,"SELECT reg_cant FROM registros WHERE reg_fecha = '$mie' AND reg_mat = $var");
+      $cMie = mysqli_fetch_array($conMie);
+      $conJue = mysqli_query($conn,"SELECT reg_cant FROM registros WHERE reg_fecha = '$jue' AND reg_mat = $var");
+      $cJue = mysqli_fetch_array($conJue);
+      $conVie = mysqli_query($conn,"SELECT reg_cant FROM registros WHERE reg_fecha = '$vie' AND reg_mat = $var");
+      $cVie = mysqli_fetch_array($conVie);
+      $conSab = mysqli_query($conn,"SELECT reg_cant FROM registros WHERE reg_fecha = '$sab' AND reg_mat = $var");
+      $cSab = mysqli_fetch_array($conSab);
     ?>
     <tr class="filaMat" id="<?php echo $fila1["mat_id"];?>">
       <th scope="row"><?php echo $i;?></th>
       <td><?php echo $fila1["mat_nom"];?></td>
-      <td><?php echo $fila1["mat_cantper"];?></td>
-      <td class="cantDom" data-fecha="<?php echo $data['dom'];?>">cantDom</td>
-      <td class="cantLun" data-fecha="<?php echo $data['lun'];?>">cantLun</td>
-      <td class="cantMar" data-fecha="<?php echo $data['mar'];?>">cantMar</td>
-      <td class="cantMie" data-fecha="<?php echo $data['mie'];?>">cantMie</td>
-      <td class="cantJue" data-fecha="<?php echo $data['jue'];?>">cantJue</td>
-      <td class="cantVie" data-fecha="<?php echo $data['vie'];?>">cantVie</td>
-      <td class="cantSab" data-fecha="<?php echo $data['sab'];?>">cantDom</td>
-    </tr>
+      <th><?php echo $fila1["mat_cantper"];?></th>
+      <td class="cantDom" data-fecha="<?php echo $data['dom'];?>"><?php echo /*$cDom["reg_cant"];*/ isset($cDom["reg_cant"]) ? $cDom["reg_cant"] : "No Asignado";?></td>
+      <td class="cantLun" data-fecha="<?php echo $data['lun'];?>"><?php echo /*$cLun["reg_cant"];*/ isset($cLun["reg_cant"]) ? $cLun["reg_cant"] : "No Asignado";?></td>
+      <td class="cantMar" data-fecha="<?php echo $data['mar'];?>"><?php echo /*$cMar["reg_cant"];*/ isset($cMar["reg_cant"]) ? $cMar["reg_cant"] : "No Asignado";?></td>
+      <td class="cantMie" data-fecha="<?php echo $data['mie'];?>"><?php echo /*$cMie["reg_cant"];*/ isset($cMie["reg_cant"]) ? $cMie["reg_cant"] : "No Asignado";?></td>
+      <td class="cantJue" data-fecha="<?php echo $data['jue'];?>"><?php echo /*$cJue["reg_cant"];*/ isset($cJue["reg_cant"]) ? $cJue["reg_cant"] : "No Asignado";?></td>
+      <td class="cantVie" data-fecha="<?php echo $data['vie'];?>"><?php echo /*$cVie["reg_cant"];*/ isset($cVie["reg_cant"]) ? $cVie["reg_cant"] : "No Asignado";?></td>
+      <td class="cantSab" data-fecha="<?php echo $data['sab'];?>"><?php echo /*$cSab["reg_cant"];*/ isset($cSab["reg_cant"]) ? $cSab["reg_cant"] : "No Asignado";?></td>
     <?php
       $i++;
       }
@@ -164,7 +178,7 @@ session_start();
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Guardar</button>
+        <button type="button" id="guardarCant" class="btn btn-primary">Guardar</button>
       </div>
     </div>
   </div>

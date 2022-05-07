@@ -48,7 +48,18 @@ if($_POST){
         case "tabla_servicios":
             tabla_servicios();
         break;
-
+        case "insertar_cant":
+            insertar_cant();
+        break;
+        case "editar_cant":
+            editar_cant();
+        break;
+        case "consultar_cant":
+            consultar_cant();
+        break;
+        case "eliminar_cant":
+            eliminar_cant();
+        break;
       }
 }
 
@@ -374,4 +385,44 @@ function tabla_servicios(){
     echo json_encode($data);//imprimir variable codificada en json
 }
 
+
+
+function insertar_cant(){
+    include '../backend/conexion.php';
+    echo("insertar");
+    print_r($_POST);
+    extract($_POST);
+
+    /*$consulta = mysqli_query($conn,"INSERT INTO registros (reg_mat, reg_serv, reg_cant, reg_fecha) VALUES ('$servicio', '$fila','$cantidad','$columna')");
+
+
+    if($consulta){
+        echo ("insertar!");
+    }else{
+        echo ("no se inserto");
+    }*/
+}
+
+function editar_cant(){
+    include '../backend/conexion.php';
+    echo("editar");
+    print_r($_POST);
+    extract($_POST);
+
+}
+
+function eliminar_cant(){
+    include '../backend/conexion.php';
+    echo("eliminar");
+    print_r($_POST);
+    extract($_POST);
+
+}
+function consultar_cant(){
+    include '../backend/conexion.php';
+    echo("consultar");
+    print_r($_POST);
+    extract($_POST);
+
+}
 ?>
