@@ -60,6 +60,9 @@ if($_POST){
         case "eliminar_cant":
             eliminar_cant();
         break;
+        case "consultar_cantxfecha":
+            consultar_cantxfecha();
+        break;
       }
 }
 
@@ -379,10 +382,70 @@ function arrayfechas($cadena){
 */
 
 function tabla_servicios(){
+    //print_r($_POST);
     extract($_POST);
-    $data = setear_fechas($fecha);//variable para guardar el return
+    $data = setear_fechas($fecha);
 
-    echo json_encode($data);//imprimir variable codificada en json
+    echo json_encode($data);//imprimir variable codificada en json*/
+    
+}
+
+function consultar_cantxfecha(){
+    include '../backend/conexion.php';
+
+    extract($_POST);
+    $data = setear_fechas($fecha);
+    extract($data);
+
+    $cantidades='';
+
+    $consulta1 = mysqli_query($conn,"SELECT mat_id, mat_cantper, mat_nom FROM materiales WHERE mat_serv = '$idSer'");
+    $i=1;
+    $j=0;
+
+    while($fila1 = mysqli_fetch_array($consulta1)){
+        $var = $fila1["mat_id"];
+        $conDom = mysqli_query($conn,"SELECT reg_cant FROM registros WHERE reg_fecha = '$dom' AND reg_mat = $var");
+        $cDom = mysqli_fetch_array($conDom);
+        $conLun = mysqli_query($conn,"SELECT reg_cant FROM registros WHERE reg_fecha = '$lun' AND reg_mat = $var");
+        $cLun = mysqli_fetch_array($conLun);
+        $conMar = mysqli_query($conn,"SELECT reg_cant FROM registros WHERE reg_fecha = '$mar' AND reg_mat = $var");
+        $cMar = mysqli_fetch_array($conMar);
+        $conMie = mysqli_query($conn,"SELECT reg_cant FROM registros WHERE reg_fecha = '$mie' AND reg_mat = $var");
+        $cMie = mysqli_fetch_array($conMie);
+        $conJue = mysqli_query($conn,"SELECT reg_cant FROM registros WHERE reg_fecha = '$jue' AND reg_mat = $var");
+        $cJue = mysqli_fetch_array($conJue);
+        $conVie = mysqli_query($conn,"SELECT reg_cant FROM registros WHERE reg_fecha = '$vie' AND reg_mat = $var");
+        $cVie = mysqli_fetch_array($conVie);
+        $conSab = mysqli_query($conn,"SELECT reg_cant FROM registros WHERE reg_fecha = '$sab' AND reg_mat = $var");
+        $cSab = mysqli_fetch_array($conSab);
+        
+        $vDom = isset($cDom["reg_cant"]) ? $cDom["reg_cant"] : 0;
+        $vLun = isset($cLun["reg_cant"]) ? $cLun["reg_cant"] : 0;
+        $vMar = isset($cMar["reg_cant"]) ? $cMar["reg_cant"] : 0;
+        $vMie = isset($cMie["reg_cant"]) ? $cMie["reg_cant"] : 0;
+        $vJue = isset($cJue["reg_cant"]) ? $cJue["reg_cant"] : 0;
+        $vVie = isset($cVie["reg_cant"]) ? $cVie["reg_cant"] : 0;
+        $vSab = isset($cSab["reg_cant"]) ? $cSab["reg_cant"] : 0;
+
+        $cantidades .= '<tr class="filaMat" id="'.$fila1['mat_id'].'">
+                            <th scope="row">'.$i.'</th>
+                            <td>'.$fila1['mat_nom'].'</td>
+                            <th>'.$fila1['mat_cantper'].'</th>
+                            <td class="cantDom" data-fecha="'.$dom.'">'.$vDom.'</td>
+                            <td class="cantLun" data-fecha="'.$lun.'">'.$vLun.'</td>
+                            <td class="cantMar" data-fecha="'.$mar.'">'.$vMar.'</td>
+                            <td class="cantMie" data-fecha="'.$mie.'">'.$vMie.'</td>
+                            <td class="cantJue" data-fecha="'.$jue.'">'.$vJue.'</td>
+                            <td class="cantVie" data-fecha="'.$vie.'">'.$vVie.'</td>
+                            <td class="cantSab" data-fecha="'.$sab.'">'.$vSab.'</td>
+                        </tr>';
+      
+      $i++;
+    }
+    //$send = array($cantidades,$data);
+    echo json_encode($cantidades,JSON_UNESCAPED_UNICODE);
+    //echo json_encode($data);
 }
 
 

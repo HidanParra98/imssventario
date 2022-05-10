@@ -13,13 +13,10 @@ session_start();
     extract($_POST);
     $_SESSION['fechaActual'] = $fechaActual;
     $_SESSION['idActual']  = $idActual;
-    $_SESSION['nomActual'] = $servActual;
-
-    header("location: ../back/tabla.php");
+    //header("location: ../back/tabla.php");
     
   }
   $idS = $_SESSION['idActual'];
-  
   $consulta = mysqli_query($conn,"SELECT ser_id, ser_nom FROM servicios WHERE ser_id = '$idS'");
   $fila = mysqli_fetch_array($consulta);
 
@@ -54,7 +51,7 @@ session_start();
         date_default_timezone_set('America/Cancun');
         $fecha = date("Y-m-d");    
       ?>
-      <input class="form-control mr-sm-2" id="fecha" type="date" value="<?php echo $fecha;?>">
+      <input class="form-control mr-sm-2" id="fecha" type="date" value="<?php //echo $fecha;?>">
     </form>
     <!--BOTON TOGGLER-->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -101,16 +98,16 @@ session_start();
       <th scope="col">#<br></th>
       <th scope="col" id="mat">MATERIAL DEL<br>SERVICIO</th>
       <th scope="col" id="can">CANTIDAD<br>PERMITIDA</th>
-      <th scope="col" data-fecha="a" id="dom">DOMINGO&nbsp;<br><?php echo $dom;?></th>
-      <th scope="col" data-fecha="b" id="lun">LUNES&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><?php echo $lun;?></th>
-      <th scope="col" data-fecha="c" id="mar">MARTES&nbsp;&nbsp;<br><?php echo $mar;?></th>
-      <th scope="col" data-fecha="d" id="mie">MIERCOLES<br><?php echo $mie;?></th>
-      <th scope="col" data-fecha="e" id="jue">JUEVES&nbsp;&nbsp;&nbsp;&nbsp;<br><?php echo $jue;?></th>
-      <th scope="col" data-fecha="f" id="vie">VIERNES&nbsp;&nbsp;<br><?php echo $vie;?></th>
-      <th scope="col" data-fecha="g" id="sab">SABADO&nbsp;&nbsp;&nbsp;<br><?php echo $sab;?></th>
+      <th scope="col" data-fecha="a" id="dom">DOMINGO&nbsp;<br><?php //echo $dom;?></th>
+      <th scope="col" data-fecha="b" id="lun">LUNES&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><?php //echo $lun;?></th>
+      <th scope="col" data-fecha="c" id="mar">MARTES&nbsp;&nbsp;<br><?php //echo $mar;?></th>
+      <th scope="col" data-fecha="d" id="mie">MIERCOLES<br><?php //echo $mie;?></th>
+      <th scope="col" data-fecha="e" id="jue">JUEVES&nbsp;&nbsp;&nbsp;&nbsp;<br><?php //echo $jue;?></th>
+      <th scope="col" data-fecha="f" id="vie">VIERNES&nbsp;&nbsp;<br><?php //echo $vie;?></th>
+      <th scope="col" data-fecha="g" id="sab">SABADO&nbsp;&nbsp;&nbsp;<br><?php //echo $sab;?></th>
     </tr>
   </thead>
-  <tbody>
+  <tbody id="tbod">
     <?php
       $consulta1 = mysqli_query($conn,"SELECT mat_id, mat_cantper, mat_nom FROM materiales WHERE mat_serv = '$idS'");
       
@@ -118,32 +115,20 @@ session_start();
       $j=0;
       while($fila1 = mysqli_fetch_array($consulta1)){
       $var = $fila1["mat_id"];
-      $conDom = mysqli_query($conn,"SELECT reg_cant FROM registros WHERE reg_fecha = '$dom' AND reg_mat = $var");
-      $cDom = mysqli_fetch_array($conDom);
-      $conLun = mysqli_query($conn,"SELECT reg_cant FROM registros WHERE reg_fecha = '$lun' AND reg_mat = $var");
-      $cLun = mysqli_fetch_array($conLun);
-      $conMar = mysqli_query($conn,"SELECT reg_cant FROM registros WHERE reg_fecha = '$mar' AND reg_mat = $var");
-      $cMar = mysqli_fetch_array($conMar);
-      $conMie = mysqli_query($conn,"SELECT reg_cant FROM registros WHERE reg_fecha = '$mie' AND reg_mat = $var");
-      $cMie = mysqli_fetch_array($conMie);
-      $conJue = mysqli_query($conn,"SELECT reg_cant FROM registros WHERE reg_fecha = '$jue' AND reg_mat = $var");
-      $cJue = mysqli_fetch_array($conJue);
-      $conVie = mysqli_query($conn,"SELECT reg_cant FROM registros WHERE reg_fecha = '$vie' AND reg_mat = $var");
-      $cVie = mysqli_fetch_array($conVie);
-      $conSab = mysqli_query($conn,"SELECT reg_cant FROM registros WHERE reg_fecha = '$sab' AND reg_mat = $var");
-      $cSab = mysqli_fetch_array($conSab);
+      
     ?>
     <tr class="filaMat" id="<?php echo $fila1["mat_id"];?>">
       <th scope="row"><?php echo $i;?></th>
       <td><?php echo $fila1["mat_nom"];?></td>
       <th><?php echo $fila1["mat_cantper"];?></th>
-      <td class="cantDom" data-fecha="<?php echo $data['dom'];?>"><?php echo /*$cDom["reg_cant"];*/ isset($cDom["reg_cant"]) ? $cDom["reg_cant"] : "No Asignado";?></td>
-      <td class="cantLun" data-fecha="<?php echo $data['lun'];?>"><?php echo /*$cLun["reg_cant"];*/ isset($cLun["reg_cant"]) ? $cLun["reg_cant"] : "No Asignado";?></td>
-      <td class="cantMar" data-fecha="<?php echo $data['mar'];?>"><?php echo /*$cMar["reg_cant"];*/ isset($cMar["reg_cant"]) ? $cMar["reg_cant"] : "No Asignado";?></td>
-      <td class="cantMie" data-fecha="<?php echo $data['mie'];?>"><?php echo /*$cMie["reg_cant"];*/ isset($cMie["reg_cant"]) ? $cMie["reg_cant"] : "No Asignado";?></td>
-      <td class="cantJue" data-fecha="<?php echo $data['jue'];?>"><?php echo /*$cJue["reg_cant"];*/ isset($cJue["reg_cant"]) ? $cJue["reg_cant"] : "No Asignado";?></td>
-      <td class="cantVie" data-fecha="<?php echo $data['vie'];?>"><?php echo /*$cVie["reg_cant"];*/ isset($cVie["reg_cant"]) ? $cVie["reg_cant"] : "No Asignado";?></td>
-      <td class="cantSab" data-fecha="<?php echo $data['sab'];?>"><?php echo /*$cSab["reg_cant"];*/ isset($cSab["reg_cant"]) ? $cSab["reg_cant"] : "No Asignado";?></td>
+      <td class="cantDom" data-fecha=""></td>
+      <td class="cantLun" data-fecha=""></td>
+      <td class="cantMar" data-fecha=""></td>
+      <td class="cantMie" data-fecha=""></td>
+      <td class="cantJue" data-fecha=""></td>
+      <td class="cantVie" data-fecha=""></td>
+      <td class="cantSab" data-fecha=""></td>
+    </tr>
     <?php
       $i++;
       }

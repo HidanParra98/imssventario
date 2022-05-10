@@ -277,22 +277,29 @@ $(document).ready(function(){
 ||||||||||||||||||||||||||||||
 */
     $("#fecha").change(function(){
-        
+        let idSer = $("#tabServ").data("id");
         let fecha = $("#fecha").val();
-        let action = 'tabla_servicios';
+        let action = 'consultar_cantxfecha';
+        let datacontact = '';
         let obj = {
-        fecha : fecha,
-        action : action
+            idSer :idSer,
+            fecha : fecha,
+            action : action
         }
-        //console.log(obj);
+
         $.ajax({
             url: "../backend/funciones.php",
             type: "POST",
             dataType: "JSON",
             async: true,
-            data: obj, 
+            data: {
+                fecha : fecha,
+                action : 'tabla_servicios'
+            }, 
             success: function(data){
-                $('#dom').html("DOMINGO<br>" + data.dom);//text("DOMINGO " + data.dom);
+                
+                console.log(data);
+                $('#dom').html("DOMINGO<br>" + data.dom);
                     $(".cantDom").data("fecha", data.dom);
                 $('#lun').html("LUNES<br>" + data.lun);
                     $(".cantLun").data("fecha", data.lun);
@@ -306,6 +313,37 @@ $(document).ready(function(){
                     $(".cantVie").data("fecha", data.vie);
                 $('#sab').html("SABADO<br>" + data.sab);
                     $(".canSab").data("fecha", data.sab);
+                    
+            }
+        })
+
+        $.ajax({
+            url: "../backend/funciones.php",
+            type: "POST",
+            //dataType: "JSON",
+            async: true,
+            data: obj, 
+            success: function(response){
+                
+                var info = JSON.parse(response);
+                datacontact = info;
+                //console.log(datacontact);
+                $("#tbod").html(datacontact);
+                /*$('#dom').html("DOMINGO<br>" + data.dom);
+                    $(".cantDom").data("fecha", data.dom);
+                $('#lun').html("LUNES<br>" + data.lun);
+                    $(".cantLun").data("fecha", data.lun);
+                $('#mar').html("MARTES<br>" + data.mar);
+                    $(".cantMar").data("fecha", data.mar);
+                $('#mie').html("MIERCOLES<br>" + data.mie);
+                    $(".cantMie").data("fecha", data.mie);
+                $('#jue').html("JUEVES<br>" + data.jue);
+                    $(".cantJue").data("fecha", data.jue);
+                $('#vie').html("VIERNES<br>" + data.vie);
+                    $(".cantVie").data("fecha", data.vie);
+                $('#sab').html("SABADO<br>" + data.sab);
+                    $(".canSab").data("fecha", data.sab);*/
+                    
             }
         })
 
@@ -314,12 +352,10 @@ $(document).ready(function(){
     $(".nomSe").click(function(){
         let idActual = $(this).data("id");
         let fechaActual = $("#fecha").data("fecha");
-        let servActual = $(this).text();
         let action = 'tabla_servicios';
         let obj = {
         idActual : idActual,
         fechaActual : fechaActual,
-        servActual : servActual,
         action : action
         }
         
@@ -342,11 +378,11 @@ $(document).ready(function(){
 ||||||||||||||||||||||||||||||||||||||||||||||||||||
 */
 
-    $("td").dblclick(function(){
-
+    /*$("td").dblclick(function(){
+        alert("holi");
 //  Si la variable de data tiene fecha, se obtienen los datos, y se procede a realizar las operaciones
-        if($(this).data("fecha")){
-            let servicio = $("#tabServ").data("id");
+        //if($(this).data("fecha")){
+            /*let servicio = $("#tabServ").data("id");
             let columna = $(this).data("fecha");
             let fila = $(this).closest('tr').attr("id");
             let cantidad =$(this).text();
@@ -358,8 +394,8 @@ $(document).ready(function(){
                 cantidad : cantidad,
                 action : action
             }
-            
-            if(cantidad != ""){
+            console.log(obj);*/
+            /*if(cantidad != ""){
                 $("#guardarCant").text("Actualizar").data("actualizar3", 1);
                 $(".modal-title").text("Editar Material");
                 $("#exampleModal").modal("show");
@@ -376,9 +412,9 @@ $(document).ready(function(){
                         //location.reload();
                     }
                 })
-            }
+            }*/
             
-            $("#guardarCant").click(function(){
+            /*$("#guardarCant").click(function(){
                 if($(this).data("actualizar3")==1){
                 obj["action"] = 'editar_cant';
                 //console.log(idServ);
@@ -396,20 +432,42 @@ $(document).ready(function(){
                     }
                 })
 
-            })
-            $("#exampleModal").modal("show");
+            })*/
             //$("#exampleModal").modal("show");
-            //$(".modal-body").html("<p>" + columna + "</p>" + "<p>" + fila + "</p>");
-            //console.log(obj);
-            //cantidad =$(this).text("holi");
-        }
+            /*$("#exampleModal").modal("show");
+            $(".modal-body").html("<p>" + columna + "</p>" + "<p>" + fila + "</p>");
+            console.log(obj);
+            cantidad =$(this).text("holi");*/
+        //}
         
 //  Si no existe se muestra esto   
-        else{
+        /*else{
             alert("Selección incorrecta");
             console.log("nada");
 
-        }   
+        }*/
+        
+    //});*/
+
+    $("#tbod").on("dblclick","td", function(){
+        if($(this).data("fecha")){
+            let servicio = $("#tabServ").data("id");
+            let columna = $(this).data("fecha");
+            let fila = $(this).closest('tr').attr("id");
+            let cantidad =$(this).text();
+            let action = "insertar_cant"
+            let obj = {
+                servicio : servicio,
+                columna : columna,
+                fila : fila,
+                cantidad : cantidad,
+                action : action
+            }
+            console.log(obj);
+            //alert(columna);
+        }else{
+            alert("Seleccion incorrecta");
+        }
         
     });
     
