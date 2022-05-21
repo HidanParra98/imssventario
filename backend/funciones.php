@@ -405,40 +405,50 @@ function consultar_cantxfecha(){
 
     while($fila1 = mysqli_fetch_array($consulta1)){
         $var = $fila1["mat_id"];
-        $conDom = mysqli_query($conn,"SELECT reg_cant FROM registros WHERE reg_fecha = '$dom' AND reg_mat = $var");
+        $conDom = mysqli_query($conn,"SELECT reg_id, reg_cant FROM registros WHERE reg_fecha = '$dom' AND reg_mat = $var");
         $cDom = mysqli_fetch_array($conDom);
-        $conLun = mysqli_query($conn,"SELECT reg_cant FROM registros WHERE reg_fecha = '$lun' AND reg_mat = $var");
+        $conLun = mysqli_query($conn,"SELECT reg_id, reg_cant FROM registros WHERE reg_fecha = '$lun' AND reg_mat = $var");
         $cLun = mysqli_fetch_array($conLun);
-        $conMar = mysqli_query($conn,"SELECT reg_cant FROM registros WHERE reg_fecha = '$mar' AND reg_mat = $var");
+        $conMar = mysqli_query($conn,"SELECT reg_id, reg_cant FROM registros WHERE reg_fecha = '$mar' AND reg_mat = $var");
         $cMar = mysqli_fetch_array($conMar);
-        $conMie = mysqli_query($conn,"SELECT reg_cant FROM registros WHERE reg_fecha = '$mie' AND reg_mat = $var");
+        $conMie = mysqli_query($conn,"SELECT reg_id, reg_cant FROM registros WHERE reg_fecha = '$mie' AND reg_mat = $var");
         $cMie = mysqli_fetch_array($conMie);
-        $conJue = mysqli_query($conn,"SELECT reg_cant FROM registros WHERE reg_fecha = '$jue' AND reg_mat = $var");
+        $conJue = mysqli_query($conn,"SELECT reg_id, reg_cant FROM registros WHERE reg_fecha = '$jue' AND reg_mat = $var");
         $cJue = mysqli_fetch_array($conJue);
-        $conVie = mysqli_query($conn,"SELECT reg_cant FROM registros WHERE reg_fecha = '$vie' AND reg_mat = $var");
+        $conVie = mysqli_query($conn,"SELECT reg_id, reg_cant FROM registros WHERE reg_fecha = '$vie' AND reg_mat = $var");
         $cVie = mysqli_fetch_array($conVie);
-        $conSab = mysqli_query($conn,"SELECT reg_cant FROM registros WHERE reg_fecha = '$sab' AND reg_mat = $var");
+        $conSab = mysqli_query($conn,"SELECT reg_id, reg_cant FROM registros WHERE reg_fecha = '$sab' AND reg_mat = $var");
         $cSab = mysqli_fetch_array($conSab);
+
+
+        $idDom = isset($cDom["reg_id"]) ? $cDom["reg_id"] : NULL;
+        $idLun = isset($cLun["reg_id"]) ? $cLun["reg_id"] : NULL;
+        $idMar = isset($cMar["reg_id"]) ? $cMar["reg_id"] : NULL;
+        $idMie = isset($cMie["reg_id"]) ? $cMie["reg_id"] : NULL;
+        $idJue = isset($cJue["reg_id"]) ? $cJue["reg_id"] : NULL;
+        $idVie = isset($cVie["reg_id"]) ? $cVie["reg_id"] : NULL;
+        $idSab = isset($cSab["reg_id"]) ? $cSab["reg_id"] : NULL;
+
         
-        $vDom = isset($cDom["reg_cant"]) ? $cDom["reg_cant"] : 0;
-        $vLun = isset($cLun["reg_cant"]) ? $cLun["reg_cant"] : 0;
-        $vMar = isset($cMar["reg_cant"]) ? $cMar["reg_cant"] : 0;
-        $vMie = isset($cMie["reg_cant"]) ? $cMie["reg_cant"] : 0;
-        $vJue = isset($cJue["reg_cant"]) ? $cJue["reg_cant"] : 0;
-        $vVie = isset($cVie["reg_cant"]) ? $cVie["reg_cant"] : 0;
-        $vSab = isset($cSab["reg_cant"]) ? $cSab["reg_cant"] : 0;
+        $vDom = isset($cDom["reg_cant"]) ? $cDom["reg_cant"] : "Sin Datos";
+        $vLun = isset($cLun["reg_cant"]) ? $cLun["reg_cant"] : "Sin Datos";
+        $vMar = isset($cMar["reg_cant"]) ? $cMar["reg_cant"] : "Sin Datos";
+        $vMie = isset($cMie["reg_cant"]) ? $cMie["reg_cant"] : "Sin Datos";
+        $vJue = isset($cJue["reg_cant"]) ? $cJue["reg_cant"] : "Sin Datos";
+        $vVie = isset($cVie["reg_cant"]) ? $cVie["reg_cant"] : "Sin Datos";
+        $vSab = isset($cSab["reg_cant"]) ? $cSab["reg_cant"] : "Sin Datos";
 
         $cantidades .= '<tr class="filaMat" id="'.$fila1['mat_id'].'">
                             <th scope="row">'.$i.'</th>
                             <td>'.$fila1['mat_nom'].'</td>
                             <th>'.$fila1['mat_cantper'].'</th>
-                            <td class="cantDom" data-fecha="'.$dom.'">'.$vDom.'</td>
-                            <td class="cantLun" data-fecha="'.$lun.'">'.$vLun.'</td>
-                            <td class="cantMar" data-fecha="'.$mar.'">'.$vMar.'</td>
-                            <td class="cantMie" data-fecha="'.$mie.'">'.$vMie.'</td>
-                            <td class="cantJue" data-fecha="'.$jue.'">'.$vJue.'</td>
-                            <td class="cantVie" data-fecha="'.$vie.'">'.$vVie.'</td>
-                            <td class="cantSab" data-fecha="'.$sab.'">'.$vSab.'</td>
+                            <td class="cantDom" data-id="'.$idDom.'" data-fecha="'.$dom.'">'.$vDom.'</td>
+                            <td class="cantLun" data-id="'.$idLun.'" data-fecha="'.$lun.'">'.$vLun.'</td>
+                            <td class="cantMar" data-id="'.$idMar.'" data-fecha="'.$mar.'">'.$vMar.'</td>
+                            <td class="cantMie" data-id="'.$idMie.'" data-fecha="'.$mie.'">'.$vMie.'</td>
+                            <td class="cantJue" data-id="'.$idJue.'" data-fecha="'.$jue.'">'.$vJue.'</td>
+                            <td class="cantVie" data-id="'.$idVie.'" data-fecha="'.$vie.'">'.$vVie.'</td>
+                            <td class="cantSab" data-id="'.$idSab.'" data-fecha="'.$sab.'">'.$vSab.'</td>
                         </tr>';
       
       $i++;
@@ -452,25 +462,29 @@ function consultar_cantxfecha(){
 
 function insertar_cant(){
     include '../backend/conexion.php';
-    echo("insertar");
+    //echo("insertar");
     print_r($_POST);
     extract($_POST);
 
     /*$consulta = mysqli_query($conn,"INSERT INTO registros (reg_mat, reg_serv, reg_cant, reg_fecha) VALUES ('$servicio', '$fila','$cantidad','$columna')");
 
-
+    
     if($consulta){
         echo ("insertar!");
     }else{
         echo ("no se inserto");
     }*/
+
+    echo 'insertar!';
 }
 
 function editar_cant(){
     include '../backend/conexion.php';
-    echo("editar");
+    //echo("editar");
     print_r($_POST);
     extract($_POST);
+
+    echo 'editar!';
 
 }
 

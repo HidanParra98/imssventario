@@ -122,6 +122,7 @@ session_start();
             <label for="nombreCategoria" class="col-form-label">Nombre de la Categoria:</label>
             <input type="text" class="form-control" id="nombreCategoria">
           </div>
+          
           <div class="form-group">
             <p>(Una categoria es un grupo de Servicios).</p>
             <h5 class="text-danger"id="alerta"></h5>

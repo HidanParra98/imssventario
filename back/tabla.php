@@ -159,7 +159,15 @@ session_start();
         </button>
       </div>
       <div class="modal-body">
-        ...
+        <form>
+          <div class="form-group">
+            <label for="cantidad" class="col-form-label">Cantidad:</label>
+            <input type="text" class="form-control" id="cantidad">
+          </div>
+          <div class="form-group">
+            <span id="datos" data-action="" data-servicio="" data-columna="" data-fila="" data-id=""></span>
+          </div>
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

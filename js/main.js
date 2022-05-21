@@ -1,5 +1,5 @@
 $(document).ready(function(){
-
+var objeto;
 /*
 ||||||||||||||||||||||||||||||
 ||||| C A T E G O R I A S|||||
@@ -298,7 +298,7 @@ $(document).ready(function(){
             }, 
             success: function(data){
                 
-                console.log(data);
+                //console.log(data);
                 $('#dom').html("DOMINGO<br>" + data.dom);
                     $(".cantDom").data("fecha", data.dom);
                 $('#lun').html("LUNES<br>" + data.lun);
@@ -322,7 +322,10 @@ $(document).ready(function(){
             type: "POST",
             //dataType: "JSON",
             async: true,
-            data: obj, 
+            data: obj,
+            beforeSend: function() {
+                alert("Buscando información... :). Se paciente. Por favor, cierrame");
+            },
             success: function(response){
                 
                 var info = JSON.parse(response);
@@ -378,97 +381,68 @@ $(document).ready(function(){
 ||||||||||||||||||||||||||||||||||||||||||||||||||||
 */
 
-    /*$("td").dblclick(function(){
-        alert("holi");
-//  Si la variable de data tiene fecha, se obtienen los datos, y se procede a realizar las operaciones
-        //if($(this).data("fecha")){
-            /*let servicio = $("#tabServ").data("id");
-            let columna = $(this).data("fecha");
-            let fila = $(this).closest('tr').attr("id");
-            let cantidad =$(this).text();
-            let action = "insertar_cant"
-            let obj = {
-                servicio : servicio,
-                columna : columna,
-                fila : fila,
-                cantidad : cantidad,
-                action : action
-            }
-            console.log(obj);*/
-            /*if(cantidad != ""){
-                $("#guardarCant").text("Actualizar").data("actualizar3", 1);
-                $(".modal-title").text("Editar Material");
-                $("#exampleModal").modal("show");
-
-                obj["action"] = 'consultar_cant';
-                $.ajax({
-                    url: "../backend/funciones.php",
-                    type: "POST",
-                    async: true,
-                        //dataType: "json",
-                    data: obj, 
-                    success: function(response){
-                    console.log(response);
-                        //location.reload();
-                    }
-                })
-            }*/
-            
-            /*$("#guardarCant").click(function(){
-                if($(this).data("actualizar3")==1){
-                obj["action"] = 'editar_cant';
-                //console.log(idServ);
-                $(this).removeData("actualizar3").removeData("id");
-                }
-                $.ajax({
-                    url: "../backend/funciones.php",
-                    type: "POST",
-                    async: true,
-                        //dataType: "json",
-                    data: obj, 
-                    success: function(response){
-                    console.log(response);
-                        //location.reload();
-                    }
-                })
-
-            })*/
-            //$("#exampleModal").modal("show");
-            /*$("#exampleModal").modal("show");
-            $(".modal-body").html("<p>" + columna + "</p>" + "<p>" + fila + "</p>");
-            console.log(obj);
-            cantidad =$(this).text("holi");*/
-        //}
-        
-//  Si no existe se muestra esto   
-        /*else{
-            alert("Selección incorrecta");
-            console.log("nada");
-
-        }*/
-        
-    //});*/
-
     $("#tbod").on("dblclick","td", function(){
+        
         if($(this).data("fecha")){
+
             let servicio = $("#tabServ").data("id");
             let columna = $(this).data("fecha");
             let fila = $(this).closest('tr').attr("id");
             let cantidad =$(this).text();
-            let action = "insertar_cant"
-            let obj = {
-                servicio : servicio,
-                columna : columna,
-                fila : fila,
-                cantidad : cantidad,
-                action : action
+            let id = $(this).data("id");
+
+            //$(this).removeData("actualizar3").removeData("id");
+            //$(".cantLun").data("fecha", data.lun);
+            //$("#guardarCant").click(function(){});
+            
+            if(cantidad == 'Sin Datos'){
+                let action = 'insertar_cant';
+                $("#datos").data("action", action);
+                $("#datos").data("servicio", servicio);
+                $("#datos").data("columna", columna);
+                $("#datos").data("fila", fila);
+                //$("#datos").data("id", id);
+
+                $("#exampleModal").modal("show");
+                $("#cantidad").val(cantidad);
             }
-            console.log(obj);
-            //alert(columna);
+            if(cantidad != 'Sin Datos'){
+                let action = 'editar_cant';
+                $("#datos").data("action", action);
+                $("#datos").data("servicio", servicio);
+                $("#datos").data("columna", columna);
+                $("#datos").data("fila", fila);
+                $("#datos").data("id", id);
+
+                $("#exampleModal").modal("show");
+                $("#cantidad").val(cantidad);
+            }
+
         }else{
             alert("Seleccion incorrecta");
-        }
-        
+        }        
     });
-    
+
+    $("#guardarCant").click(function(){
+        let servicio = $("#datos").data("servicio");
+        let columna = $("#datos").data("columna");
+        let fila = $("#datos").data("fila");
+        let cantidad = $("#cantidad").val();
+        let id = $("#datos").data("id");
+        let action = $("#datos").data("action");
+
+        let objeto = {
+            servicio : servicio,
+            columna : columna,
+            fila : fila,
+            cantidad : cantidad,
+            id : id,
+            action : action
+        }
+
+        console.log(objeto);
+
+    });
+
+
 })
