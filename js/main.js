@@ -391,6 +391,7 @@ var objeto;
             let cantidad =$(this).text();
             let id = $(this).data("id");
 
+            //$(this).css("border-color","#036638")
             //$(this).removeData("actualizar3").removeData("id");
             //$(".cantLun").data("fecha", data.lun);
             //$("#guardarCant").click(function(){});
@@ -431,18 +432,51 @@ var objeto;
         let id = $("#datos").data("id");
         let action = $("#datos").data("action");
 
-        let objeto = {
-            servicio : servicio,
-            columna : columna,
-            fila : fila,
-            cantidad : cantidad,
-            id : id,
-            action : action
-        }
+        if(cantidad == 'Sin Datos' || cantidad == ''){
+            alert('Por favor ingresa una cantidad!');
+        }else{
+            let objeto = {
+                servicio : servicio,
+                columna : columna,
+                fila : fila,
+                cantidad : cantidad,
+                id : id,
+                action : action
+            }
 
-        console.log(objeto);
+            $.ajax({
+                url: "../backend/funciones.php",
+                type: "POST",
+                async: true,
+                data: objeto, 
+                success: function(response){
+
+                    $("#exampleModal").modal("hide");
+                    
+                    let info = JSON.parse(response); //CONVERTIR JSON A ARRAY
+                    
+                    let col = info[0]; //COLUMNA
+                    let row = info[1]; //FILA
+                    let can = info[2]; //CANTIDAD
+
+                    $("#tbod").find('tr[data-id='+row+']').find('td[data-fecha='+col+']').text(can);
+                    
+                }
+            })
+        }
 
     });
 
+/*
+||||||||||||||||||||||||||||||||||||||||||||||||||||
+|||||||| E D I C I O N - I N S E R C I O N |||||||||
+||||||||||||||||||||||||||||||||||||||||||||||||||||
+*/
+
+    $("#imprimir").click(function(){
+        window.print();
+
+
+    });
 
 })

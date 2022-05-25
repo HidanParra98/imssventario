@@ -61,29 +61,15 @@ session_start();
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <!--GRUPO DE BOTONES-->
       <ul class="navbar-nav mr-auto">
-        <!--DROPDOWN DEL BOTON AGREGAR-->
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Agregar
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Categoria</a>
-            <a class="dropdown-item" href="#">Servicio</a>
-            <a class="dropdown-item" href="#">Material</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#"></a>
-          </div>
-        </li>
-        <!--FIN DEL DROPDOWN DEL BOTON AGREGAR-->
         <!--DEMAS BOTONES-->
         <li class="nav-item">
-          <a class="nav-link" href="#">Cambiar</a>
+          <a class="nav-link" href="<?php echo '../back/menu.php';?>">Menu Principal</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Borrar</a>
+          <a class="nav-link" id="imprimir" href="#">Imprimir</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Cerrar Sesión</a>
+          <a class="nav-link" href="<?php echo '../backend/salir.php';?>">Cerrar Sesión</a>
         </li>
       </ul>
       <!--FIN DEL GRUPO BOTONES-->
@@ -117,7 +103,7 @@ session_start();
       $var = $fila1["mat_id"];
       
     ?>
-    <tr class="filaMat" id="<?php echo $fila1["mat_id"];?>">
+    <tr class="filaMat" id="<?php echo $fila1["mat_id"];?>" data-id="<?php echo $fila1["mat_id"];?>">
       <th scope="row"><?php echo $i;?></th>
       <td><?php echo $fila1["mat_nom"];?></td>
       <th><?php echo $fila1["mat_cantper"];?></th>

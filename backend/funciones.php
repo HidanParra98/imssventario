@@ -438,7 +438,7 @@ function consultar_cantxfecha(){
         $vVie = isset($cVie["reg_cant"]) ? $cVie["reg_cant"] : "Sin Datos";
         $vSab = isset($cSab["reg_cant"]) ? $cSab["reg_cant"] : "Sin Datos";
 
-        $cantidades .= '<tr class="filaMat" id="'.$fila1['mat_id'].'">
+        $cantidades .= '<tr class="filaMat" id="'.$fila1['mat_id'].'" data-id="'.$fila1['mat_id'].'">
                             <th scope="row">'.$i.'</th>
                             <td>'.$fila1['mat_nom'].'</td>
                             <th>'.$fila1['mat_cantper'].'</th>
@@ -463,28 +463,38 @@ function consultar_cantxfecha(){
 function insertar_cant(){
     include '../backend/conexion.php';
     //echo("insertar");
-    print_r($_POST);
+    //print_r($_POST);
     extract($_POST);
 
-    /*$consulta = mysqli_query($conn,"INSERT INTO registros (reg_mat, reg_serv, reg_cant, reg_fecha) VALUES ('$servicio', '$fila','$cantidad','$columna')");
+    $consulta = mysqli_query($conn,"INSERT INTO registros (reg_mat, reg_serv, reg_cant, reg_fecha) VALUES ('$fila', '$servicio','$cantidad','$columna')");
 
     
-    if($consulta){
+    /*if($consulta){
         echo ("insertar!");
     }else{
         echo ("no se inserto");
     }*/
 
-    echo 'insertar!';
+    $data = array($columna,$fila,$cantidad);
+    echo json_encode($data);
 }
 
 function editar_cant(){
     include '../backend/conexion.php';
     //echo("editar");
-    print_r($_POST);
+    //print_r($_POST);
     extract($_POST);
 
-    echo 'editar!';
+    $consulta = mysqli_query($conn,"UPDATE registros SET reg_cant = '$cantidad' WHERE reg_id = $id");
+    
+    /*if($consulta){
+        echo ("editar!");
+    }else{
+        echo ("no se edito");
+    }*/
+
+    $data = array($columna,$fila,$cantidad);
+    echo json_encode($data);
 
 }
 
