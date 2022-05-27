@@ -1,6 +1,6 @@
 <?php
 include '../backend/conexion.php';
-//include '../backend/funciones.php';
+include '../backend/funciones.php';
 
 session_start();
     $usuario = $_SESSION['username'];
@@ -8,15 +8,28 @@ session_start();
     if(!isset($usuario)){
         header("location: ../index.html");
     }
-  
-  $consult = mysqli_query($conn,"SELECT numero FROM temp WHERE id = 1");
-  $fil = mysqli_fetch_array($consult);
-  $idS = $fil['numero'];
 
+  if($_POST){ 
+    extract($_POST);
+    $_SESSION['fechaActual'] = $fechaActual;
+    $_SESSION['idActual']  = $idActual;
+    //header("location: ../back/tabla.php");
+    
+  }
+  $idS = $_SESSION['idActual'];
   $consulta = mysqli_query($conn,"SELECT ser_id, ser_nom FROM servicios WHERE ser_id = '$idS'");
   $fila = mysqli_fetch_array($consulta);
 
+  $fechaS = $_SESSION['fechaActual'];
+  //var_dump($fechaS);
+  $data = setear_fechas($fechaS);
+  extract($data);
+  //print_r($data);
+  //var_dump($json);
+  //echo $data['Domingo'];
+
 ?>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -113,7 +126,7 @@ session_start();
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -145,29 +158,6 @@ session_start();
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
         <button type="button" id="guardarCant" class="btn btn-primary">Guardar</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!-- Modal  de Carga-->
-<div class="modal fade" id="modalCarga" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">CARGANDO...</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>SEA PACIENTE SE ESTAN OBTENIENDO LOS DATOS... :D</p>
-        <p>(Esta ventana se cerrara automaticamente)</p>
-      </div>
-      <div class="modal-footer">
-        <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>-->
-        <!--<button type="button" class="btn btn-primary"></button>-->
       </div>
     </div>
   </div>

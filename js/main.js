@@ -324,10 +324,10 @@ var objeto;
             async: true,
             data: obj,
             beforeSend: function() {
-                alert("Buscando información... :). Se paciente. Por favor, cierrame");
+                $("#modalCarga").modal("show");
             },
             success: function(response){
-                
+                $("#modalCarga").modal("hide");
                 var info = JSON.parse(response);
                 datacontact = info;
                 //console.log(datacontact);
@@ -351,33 +351,38 @@ var objeto;
         })
 
     });
+
+/*
+||||||||||||||||||||||||||||||||||||||||||||||||||||
+||||| MANDAR A DATOS DE MENU.PHP A TABLA.PHP |||||||
+||||||||||||||||||||||||||||||||||||||||||||||||||||
+*/   
     
     $(".nomSe").click(function(){
         let idActual = $(this).data("id");
-        let fechaActual = $("#fecha").data("fecha");
-        let action = 'tabla_servicios';
+        let action = 'actualizar_temp';
         let obj = {
-        idActual : idActual,
-        fechaActual : fechaActual,
-        action : action
+            idActual : idActual,
+            action : action
         }
         
     $.ajax({
-        url: "../back/tabla.php",
+        url: "../backend/funciones.php",
         type: "POST",
         async: true,
-        //dataType: "JSON",
-        data: obj, 
+        data: obj,
         success: function(response){
             location.assign('../back/tabla.php');
-            
+            //location.assign(response);
+            //console.log(response);
+            console.log(response);
         }
         })
     });
 
 /*
 ||||||||||||||||||||||||||||||||||||||||||||||||||||
-|||||||| E D I C I O N - I N S E R C I O N |||||||||
+|||||||| C O N T R O L   D E   C E L D A S |||||||||
 ||||||||||||||||||||||||||||||||||||||||||||||||||||
 */
 
@@ -424,6 +429,12 @@ var objeto;
         }        
     });
 
+/*
+||||||||||||||||||||||||||||||||||||||||||||||||||||
+|||||||| E D I C I O N - I N S E R C I O N |||||||||
+||||||||||||||||||||||||||||||||||||||||||||||||||||
+*/
+
     $("#guardarCant").click(function(){
         let servicio = $("#datos").data("servicio");
         let columna = $("#datos").data("columna");
@@ -458,8 +469,18 @@ var objeto;
                     let col = info[0]; //COLUMNA
                     let row = info[1]; //FILA
                     let can = info[2]; //CANTIDAD
+                    let idT = info[3]; //ID
+                    //console.log(info);
+                    if(idT=='m'){
+                        $("#tbod").find('tr[data-id='+row+']').find('td[data-fecha='+col+']').text(can);
+                        //console.log('editar!');
+                    }else{
+                        console.log('insertar!' + idT);
+                        //$("#tbod").find('tr[data-id='+row+']').find('td[data-fecha='+col+']').data("id",idT).text(can);
+                    }
 
-                    $("#tbod").find('tr[data-id='+row+']').find('td[data-fecha='+col+']').text(can);
+                    //$("#tbod").find('tr[data-id='+row+']').find('td[data-fecha='+col+']').text(can);
+                    //$(".cantVie").data("id", data.vie);
                     
                 }
             })
@@ -469,7 +490,7 @@ var objeto;
 
 /*
 ||||||||||||||||||||||||||||||||||||||||||||||||||||
-|||||||| E D I C I O N - I N S E R C I O N |||||||||
+||||||||||||||| I M P R E S I O N ||||||||||||||||||
 ||||||||||||||||||||||||||||||||||||||||||||||||||||
 */
 

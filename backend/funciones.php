@@ -63,6 +63,9 @@ if($_POST){
         case "consultar_cantxfecha":
             consultar_cantxfecha();
         break;
+        case "actualizar_temp":
+            actualizar_temp();
+        break;
       }
 }
 
@@ -465,17 +468,17 @@ function insertar_cant(){
     //echo("insertar");
     //print_r($_POST);
     extract($_POST);
-
+    $idT;
     $consulta = mysqli_query($conn,"INSERT INTO registros (reg_mat, reg_serv, reg_cant, reg_fecha) VALUES ('$fila', '$servicio','$cantidad','$columna')");
 
     
-    /*if($consulta){
-        echo ("insertar!");
-    }else{
+    if($consulta){
+        $idT = mysqli_insert_id($conn);
+    }/*else{
         echo ("no se inserto");
     }*/
 
-    $data = array($columna,$fila,$cantidad);
+    $data = array($columna,$fila,$cantidad,$idT);
     echo json_encode($data);
 }
 
@@ -484,7 +487,7 @@ function editar_cant(){
     //echo("editar");
     //print_r($_POST);
     extract($_POST);
-
+    $idT='m';
     $consulta = mysqli_query($conn,"UPDATE registros SET reg_cant = '$cantidad' WHERE reg_id = $id");
     
     /*if($consulta){
@@ -493,7 +496,7 @@ function editar_cant(){
         echo ("no se edito");
     }*/
 
-    $data = array($columna,$fila,$cantidad);
+    $data = array($columna,$fila,$cantidad,$idT);
     echo json_encode($data);
 
 }
@@ -511,5 +514,20 @@ function consultar_cant(){
     print_r($_POST);
     extract($_POST);
 
+}
+
+function actualizar_temp(){
+    include '../backend/conexion.php';
+    //print_r($_POST);
+    extract($_POST);
+
+    $consulta = mysqli_query($conn,"UPDATE temp SET numero = '$idActual' WHERE id = 1");
+
+    if($consulta){
+        echo ("temp!");
+    }else{
+        echo ("no temp");
+    }
+    //echo("temp!");
 }
 ?>
