@@ -475,8 +475,8 @@ var objeto;
                         $("#tbod").find('tr[data-id='+row+']').find('td[data-fecha='+col+']').text(can);
                         //console.log('editar!');
                     }else{
-                        console.log('insertar!' + idT);
-                        //$("#tbod").find('tr[data-id='+row+']').find('td[data-fecha='+col+']').data("id",idT).text(can);
+                        //console.log('insertar!' + idT);
+                        $("#tbod").find('tr[data-id='+row+']').find('td[data-fecha='+col+']').data("id",idT).text(can);
                     }
 
                     //$("#tbod").find('tr[data-id='+row+']').find('td[data-fecha='+col+']').text(can);
