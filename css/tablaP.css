@@ -1,0 +1,35 @@
+@media print{
+
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .padre{
+        padding: 0;
+        margin: 0;
+    }
+    .encabezado{
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+        padding: 5px;
+        margin: 5px;
+       
+        
+    }
+    .imgEnc{
+        margin-right: 30px;
+    }
+    img{  
+        height: 100px;
+        width: 100px;
+        
+    }
+    p{
+        margin: 0px;
+        padding: 0px;
+    }
+
+}

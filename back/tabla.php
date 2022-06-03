@@ -25,7 +25,11 @@ session_start();
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/tabla.css">
+    <link rel="stylesheet" href="../css/tablaP.css" media="print">
     <title>Inventario</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" defer></script>
 </head>
 <body>
 <div class="container-fluid padre">
@@ -65,11 +69,23 @@ session_start();
   </nav>
   <!--FIN DEL NAVBAR-->
   <!--INICIO DEL TABLE-->
-  <table class="table">
+  <table class="table table-bordered">
   <thead>
+    <div class="encabezado">
+        <div class="imgEnc">
+          <img class="img-fluid" src="../assets/imsslogo.png" alt="">
+        </div>
+        <div class="datosEnc">
+          <p><strong>INSTITUTO MEXICANO DEL SEGURO SOCIAL</strong></p>
+          <p><strong>ORGANO DE OPERACION ADMINISTRATIVA DESCONCENTRADA</strong></p>
+          <p><strong>24-QUINTANA ROO</strong></p>
+          <p><strong>HOSPITAL DE GINECOPEDIATRIA No.7</strong></h3>
+          <p><strong>DEPARTAMENTO DE ENEFERMERIA</strong></p>
+        </div>
+    </div>
     <tr class="colMat"> 
       <th scope="col">#<br></th>
-      <th scope="col" id="mat">MATERIAL DEL<br>SERVICIO</th>
+      <th scope="col" id="mat">MATERIAL DEL <br>SERVICIO</th>
       <th scope="col" id="can">CANTIDAD<br>PERMITIDA</th>
       <th scope="col" data-fecha="a" id="dom">DOMINGO&nbsp;<br><?php //echo $dom;?></th>
       <th scope="col" data-fecha="b" id="lun">LUNES&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><?php //echo $lun;?></th>
@@ -91,7 +107,7 @@ session_start();
       
     ?>
     <tr class="filaMat" id="<?php echo $fila1["mat_id"];?>" data-id="<?php echo $fila1["mat_id"];?>">
-      <th scope="row"><?php echo $i;?></th>
+      <th class="num" scope="row"><?php echo $i;?></th>
       <td><?php echo $fila1["mat_nom"];?></td>
       <th><?php echo $fila1["mat_cantper"];?></th>
       <td class="cantDom" data-fecha=""></td>
@@ -107,9 +123,28 @@ session_start();
       }
     ?>
   </tbody>
+  <tfoot>
+    <tr>
+      <th></th>
+      <th><h3><?php echo strtoupper($fila['ser_nom']); ?></h3></th>
+      <td>Turno:</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tfoot>
 </table>
 </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js" integrity="sha256-6XMVI0zB8cRzfZjqKcD01PBsAy3FlDASrlC8SxCpInY=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js" integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
