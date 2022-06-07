@@ -42,10 +42,13 @@
             while($fila1 = mysqli_fetch_array($consulta1)){
         ?>
             <div class="col grupobotones">
+                <?php 
+                    $cat = $fila1["cat_id"];
+                ?>
                 <h4 class="subtitulos" id=""><?php echo $fila1["cat_nombre"];?></h4>
                 <?php
                 //OBTENER NOMBRE DE SERVICIOS DE ACUERDO A LA CATEGORIA
-                    $consulta2 = mysqli_query($conn,"SELECT ser_id, ser_nom FROM servicios WHERE ser_cat = $i");
+                    $consulta2 = mysqli_query($conn,"SELECT ser_id, ser_nom FROM servicios WHERE ser_cat = $cat");
                     while($fila2 = mysqli_fetch_array($consulta2)){ 
                 ?>
                 <button type="button" data-id="<?php echo $fila2["ser_id"];?>" class="btn btn-secondary d-block nomSe botones"><?php echo $fila2["ser_nom"];?></button>

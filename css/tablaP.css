@@ -19,17 +19,98 @@
        
         
     }
-    .imgEnc{
-        margin-right: 30px;
+    
+    .colmat{
+        padding: 12px;
     }
-    img{  
-        height: 100px;
-        width: 100px;
+    .filamat .nom{
+        text-align: left;
+        padding-left: 8px;
+        align-items: center;
+    }
+    .table td, .table th {
+        padding: 1px;
+        font-size: 11px;
+        text-align: center;
+    }
+
+        /*THEAD*/
+    .colmat .dcontenedor{
+        padding: 0;
+        margin: 0;
+        text-align: center;
+        width: 135px;
+    }
+    .hinterno{
+        width: 100%;
+    }
+    .hinterno tr{
+        width: 100%;
+    }
+    .hinterno td{
+        width: 44px;
+        padding: 0px;
+        text-align: center;
+
+    }
+
+    /*TBODY CONTENEDOR DE COLUMNAS INTERNAS*/
+    .filamat{
+        height: 45px;
+    }
+    .filamat .cinterno{
+        padding: 0;
+        margin: 0;
+    }
+    /*TBODY TABLA Y COLUMNAS INTERNAS*/
+    .interno{
+        width: 100%;  
+        height: 47px;
+    }
+
+
+
+    /*TFOOTER CONTENEDOR DE FILAS INTERNA*/
+    .filafirmas .turnos{
+        padding: 0;
+        margin: 0;
+    }
+    /*TFOOTER ANCHO DE LA FILA INTERNA*/
+    .finterno{
+        width: 100%;
+    }
+    /*TFOOTER COLUMNAS DE LAS FILAS*/
+    .finterno th{
+        padding: 0px;
+        text-align: center;
+        height: 22px;
+    }
+
+
+/*ESTILOS ENCABEZADO*/
+    .imgEnc{
+        margin-right: 50px;
+    }
+    #imss{  
+        height: 90px;
+        width: 90px;
         
+    }
+    .imgGob{
+        margin-left: 50px;
+    }
+    #gob{
+        height: 60px;
+        width: 200px;
     }
     p{
         margin: 0px;
         padding: 0px;
+    }
+
+    .filafirmas h3{
+        font-size: 13px;
+        padding: 8px 15px 1px 15px;
     }
 
 }

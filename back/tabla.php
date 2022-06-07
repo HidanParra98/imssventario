@@ -42,7 +42,7 @@ session_start();
         date_default_timezone_set('America/Cancun');
         $fecha = date("Y-m-d");    
       ?>
-      <input class="form-control mr-sm-2" id="fecha" type="date" value="<?php //echo $fecha;?>">
+      <!--<input class="form-control mr-sm-2" <?php //id="fecha" ?> type="date" value="<?php //echo $fecha;?>">-->
     </form>
     <!--BOTON TOGGLER-->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -73,27 +73,84 @@ session_start();
   <thead>
     <div class="encabezado">
         <div class="imgEnc">
-          <img class="img-fluid" src="../assets/imsslogo.png" alt="">
+          <img class="img-fluid" id="imss" src="../assets/imsslogo.png" alt="">
         </div>
         <div class="datosEnc">
           <p><strong>INSTITUTO MEXICANO DEL SEGURO SOCIAL</strong></p>
-          <p><strong>ORGANO DE OPERACION ADMINISTRATIVA DESCONCENTRADA</strong></p>
-          <p><strong>24-QUINTANA ROO</strong></p>
           <p><strong>HOSPITAL DE GINECOPEDIATRIA No.7</strong></h3>
-          <p><strong>DEPARTAMENTO DE ENEFERMERIA</strong></p>
+          <p><strong>RECEPCION Y ENTREGA DE MATERIAL</strong></p>
+        </div>
+        <div class="imgGob">
+          <img class="img-fluid" id="gob"src="../assets/monitos.jpeg" alt="gob">
         </div>
     </div>
     <tr class="colMat"> 
       <th scope="col">#<br></th>
-      <th scope="col" id="mat">MATERIAL DEL <br>SERVICIO</th>
-      <th scope="col" id="can">CANTIDAD<br>PERMITIDA</th>
-      <th scope="col" data-fecha="a" id="dom">DOMINGO&nbsp;<br><?php //echo $dom;?></th>
-      <th scope="col" data-fecha="b" id="lun">LUNES&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><?php //echo $lun;?></th>
-      <th scope="col" data-fecha="c" id="mar">MARTES&nbsp;&nbsp;<br><?php //echo $mar;?></th>
-      <th scope="col" data-fecha="d" id="mie">MIERCOLES<br><?php //echo $mie;?></th>
-      <th scope="col" data-fecha="e" id="jue">JUEVES&nbsp;&nbsp;&nbsp;&nbsp;<br><?php //echo $jue;?></th>
-      <th scope="col" data-fecha="f" id="vie">VIERNES&nbsp;&nbsp;<br><?php //echo $vie;?></th>
-      <th scope="col" data-fecha="g" id="sab">SABADO&nbsp;&nbsp;&nbsp;<br><?php //echo $sab;?></th>
+      <th scope="col" id="mat">MATERIAL</th>
+      <th scope="col" id="can">CANT</th>
+      <th scope="col" class="dcontenedor" data-fecha="a" id="dom">&#8192;
+        <table class="hinterno">
+          <tr>
+            <td>M</td>
+            <td>V</td>
+            <td>N</td>
+          </tr>
+        </table>
+      </th>
+      <th scope="col" class="dcontenedor" data-fecha="b" id="lun">
+        <table class="hinterno">
+          <tr>
+            <td>M</td>
+            <td>V</td>
+            <td>N</td>
+          </tr>
+        </table>
+      </th>
+      <th scope="col" class="dcontenedor" data-fecha="c" id="mar">
+        <table class="hinterno">
+          <tr>
+            <td>M</td>
+            <td>V</td>
+            <td>N</td>
+          </tr>
+        </table>
+      </th>
+      <th scope="col" class="dcontenedor" data-fecha="d" id="mie">
+        <table class="hinterno">
+          <tr>
+            <td>M</td>
+            <td>V</td>
+            <td>N</td>
+          </tr>
+        </table>
+      </th>
+      <th scope="col" class="dcontenedor" data-fecha="e" id="jue">
+        <table class="hinterno">
+          <tr>
+            <td>M</td>
+            <td>V</td>
+            <td>N</td>
+          </tr>
+        </table>
+      </th>
+      <th scope="col" class="dcontenedor" data-fecha="f" id="vie">
+        <table class="hinterno">
+          <tr>
+            <td>M</td>
+            <td>V</td>
+            <td>N</td>
+          </tr>
+        </table>
+      </th>
+      <th scope="col" class="dcontenedor" data-fecha="g" id="sab">
+        <table class="hinterno">
+          <tr>
+            <td>M</td>
+            <td>V</td>
+            <td>N</td>
+          </tr>
+        </table>
+      </th>
     </tr>
   </thead>
   <tbody id="tbod">
@@ -108,15 +165,57 @@ session_start();
     ?>
     <tr class="filaMat" id="<?php echo $fila1["mat_id"];?>" data-id="<?php echo $fila1["mat_id"];?>">
       <th class="num" scope="row"><?php echo $i;?></th>
-      <td><?php echo $fila1["mat_nom"];?></td>
+      <td class="nom"><?php echo $fila1["mat_nom"];?></td>
       <th><?php echo $fila1["mat_cantper"];?></th>
-      <td class="cantDom" data-fecha=""></td>
-      <td class="cantLun" data-fecha=""></td>
-      <td class="cantMar" data-fecha=""></td>
-      <td class="cantMie" data-fecha=""></td>
-      <td class="cantJue" data-fecha=""></td>
-      <td class="cantVie" data-fecha=""></td>
-      <td class="cantSab" data-fecha=""></td>
+      <td class="cantDom cinterno" data-fecha="">
+        <table class="interno">
+          <td></td>
+          <td></td>
+          <td></td>
+        </table>
+      </td>
+      <td class="cantLun cinterno" data-fecha="">
+        <table class="interno">
+          <td></td>
+          <td></td>
+          <td></td>
+        </table>
+      </td>
+      <td class="cantMar cinterno" data-fecha="">
+        <table class="interno">
+          <td></td>
+          <td></td>
+          <td></td>
+        </table>
+      </td>
+      <td class="cantMie cinterno" data-fecha="">
+        <table class="interno">
+          <td></td>
+          <td></td>
+          <td></td>
+        </table>
+      </td>
+      <td class="cantJue cinterno" data-fecha="">
+        <table class="interno">
+          <td></td>
+          <td></td>
+          <td></td>
+        </table>
+      </td>
+      <td class="cantVie cinterno" data-fecha="">
+        <table class="interno">
+          <td></td>
+          <td></td>
+          <td></td>
+        </table>
+      </td>
+      <td class="cantSab cinterno" data-fecha="">
+        <table class="interno">
+          <td></td>
+          <td></td>
+          <td></td>
+        </table>
+      </td>
     </tr>
     <?php
       $i++;
@@ -124,17 +223,65 @@ session_start();
     ?>
   </tbody>
   <tfoot>
-    <tr>
+    <tr class="filafirmas">
       <th></th>
-      <th><h3><?php echo strtoupper($fila['ser_nom']); ?></h3></th>
-      <td>Turno:</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <th><h3>E.G FIRMA Y MATRICULA</h3></th>
+      <td class="turnos">
+        <table class="finterno" >
+          <tr><th>TM</th></tr>
+          <tr><th>TV</th></tr>
+          <tr><th>TN</th></tr>
+        </table>
+      </td>
+      <td class="turnos">
+        <table class="finterno" >
+          <tr><th></th></tr>
+          <tr><th></th></tr>
+          <tr><th></th></tr>
+        </table>
+      </td>
+      <td class="turnos">
+        <table class="finterno" >
+          <tr><th></th></tr>
+          <tr><th></th></tr>
+          <tr><th></th></tr>
+        </table>
+      </td>
+      <td class="turnos">
+        <table class="finterno" >
+          <tr><th></th></tr>
+          <tr><th></th></tr>
+          <tr><th></th></tr>
+        </table>
+      </td>
+      <td class="turnos">
+        <table class="finterno" >
+          <tr><th></th></tr>
+          <tr><th></th></tr>
+          <tr><th></th></tr>
+        </table>
+      </td>
+      <td class="turnos">
+        <table class="finterno" >
+          <tr><th></th></tr>
+          <tr><th></th></tr>
+          <tr><th></th></tr>
+        </table>
+      </td>
+      <td class="turnos">
+        <table class="finterno" >
+          <tr><th></th></tr>
+          <tr><th></th></tr>
+          <tr><th></th></tr>
+        </table>
+      </td>
+      <td class="turnos">
+        <table class="finterno" >
+          <tr><th></th></tr>
+          <tr><th></th></tr>
+          <tr><th></th></tr>
+        </table>
+      </td>
     </tr>
   </tfoot>
 </table>

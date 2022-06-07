@@ -10,7 +10,57 @@
 .encabezado{
     display: none;
 }
-/*.encabezado{
+/*THEAD*/
+.colmat .dcontenedor{
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    width: 125px;
+}
+.hinterno{
+    width: 100%;
+}
+.hinterno tr{
+    width: 100%;
+}
+.hinterno td{
+    width: 44px;
+    padding: 0px;
+    text-align: center;
+
+}
+
+/*TBODY CONTENEDOR DE COLUMNAS INTERNAS*/
+
+.filamat .cinterno{
+    padding: 0;
+    margin: 0;
+}
+/*TBODY TABLA Y COLUMNAS INTERNAS*/
+.interno{
+    width: 100%;  
+    height: 45px;
+}
+/*TFOOTER CONTENEDOR DE FILAS INTERNA*/
+.filafirmas .turnos{
+    padding: 0;
+    margin: 0;
+}
+/*TFOOTER ANCHO DE LA FILA INTERNA*/
+.finterno{
+    width: 100%;
+}
+/*TFOOTER COLUMNAS DE LAS FILAS*/
+.finterno th{
+    padding: 0px;
+    text-align: center;
+    height: 22px;
+}
+/*.table td, .table th{
+    padding: 8px;
+}
+
+.encabezado{
     display: flex;
     justify-content: center;
     text-align: center;
